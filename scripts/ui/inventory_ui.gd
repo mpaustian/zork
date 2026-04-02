@@ -117,7 +117,7 @@ func _end_drag() -> void:
 	var results := space.intersect_point(query)
 
 	for result in results:
-		var collider := result["collider"]
+		var collider: Object = result["collider"]
 		if collider is Hotspot:
 			InventoryManager.use_item_on(_dragging_item, collider.hotspot_id)
 			break

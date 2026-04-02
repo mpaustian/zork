@@ -40,7 +40,7 @@ func advance_turn() -> void:
 	turn_advanced.emit(turn_count)
 
 
-func add_score(points: int, reason: String = "") -> void:
+func add_score(points: int, _reason: String = "") -> void:
 	var old_score := score
 	score = mini(score + points, MAX_SCORE)
 	if score != old_score:

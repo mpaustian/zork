@@ -33,7 +33,7 @@ func _load_room_data() -> void:
 	room_data = json.data
 
 
-func go_to_room(room_id: String, direction: String = "") -> void:
+func go_to_room(room_id: String, _direction: String = "") -> void:
 	if room_id == current_room_id:
 		return
 
