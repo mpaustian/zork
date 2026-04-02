@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://room_west_of_house"]
+
+[ext_resource type="Script" path="res://scripts/rooms/west_of_house.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
+vertices = PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mailbox"]
+size = Vector2(40, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_window"]
+size = Vector2(50, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
+size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
+size = Vector2(12, 8)
+
+[node name="WestOfHouse" type="Node2D"]
+script = ExtResource("1")
+room_id = "west_of_house"
+room_name = "West of House"
+surface_type = "grass"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.2, 0.45, 0.15, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+target_desired_distance = 4.0
+path_desired_distance = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_player_col")
+
+[node name="Mailbox" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(350, 260)
+script = ExtResource("2")
+hotspot_id = "mailbox"
+display_name = "Small Mailbox"
+hotspot_type = 3
+look_text = "A small mailbox stands here, its little red flag raised as if saluting your arrival."
+walk_to_point = Vector2(330, 270)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mailbox"]
+shape = SubResource("RectangleShape2D_mailbox")
+
+[node name="Window" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(500, 160)
+visible = false
+script = ExtResource("2")
+hotspot_id = "window"
+display_name = "Window"
+hotspot_type = 4
+look_text = "You can't see through the window from this side of the house."
+highlight_on_tab = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Window"]
+shape = SubResource("RectangleShape2D_window")
+
+[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 195)
+script = ExtResource("2")
+hotspot_id = "exit_north"
+display_name = "North"
+hotspot_type = 1
+exit_direction = "n"
+look_text = "A path leads around the north side of the house."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
+shape = SubResource("RectangleShape2D_exit_n")
+
+[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 345)
+script = ExtResource("2")
+hotspot_id = "exit_south"
+display_name = "South"
+hotspot_type = 1
+exit_direction = "s"
+look_text = "A path leads around the south side of the house."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
+shape = SubResource("RectangleShape2D_exit_s")
+
+[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(15, 270)
+script = ExtResource("2")
+hotspot_id = "exit_west"
+display_name = "West"
+hotspot_type = 1
+exit_direction = "w"
+look_text = "A dense forest stretches to the west."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
+shape = SubResource("RectangleShape2D_exit_w")

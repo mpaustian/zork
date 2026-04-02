@@ -1,0 +1,89 @@
+extends CharacterBody2D
+class_name Player
+## The adventurer. Click-to-move pathfinding, animation states.
+
+signal arrived_at(position: Vector2)
+signal clicked_hotspot(hotspot: Node2D)
+
+const MOVE_SPEED := 80.0  # Pixels per second
+
+@export var nav_agent: NavigationAgent2D
+
+var _moving := false
+var _target_pos := Vector2.ZERO
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func _ready() -> void:
+	if nav_agent:
+		nav_agent.velocity_computed.connect(_on_velocity_computed)
+		nav_agent.navigation_finished.connect(_on_navigation_finished)
+		nav_agent.target_desired_distance = 4.0
+		nav_agent.path_desired_distance = 4.0
+
+
+func _physics_process(_delta: float) -> void:
+	if not _moving:
+		return
+	if not nav_agent:
+		return
+	if nav_agent.is_navigation_finished():
+		_stop_moving()
+		return
+
+	var next_pos := nav_agent.get_next_path_position()
+	var direction := global_position.direction_to(next_pos)
+
+	velocity = direction * MOVE_SPEED
+
+	# Flip sprite based on movement direction
+	if velocity.x < -1:
+		sprite.flip_h = true
+	elif velocity.x > 1:
+		sprite.flip_h = false
+
+	# Play walk animation
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation("walk"):
+		sprite.play("walk")
+
+	move_and_slide()
+
+
+func move_to(target: Vector2) -> void:
+	if GameManager.state != GameManager.GameState.PLAYING:
+		return
+	_target_pos = target
+	_moving = true
+	if nav_agent:
+		nav_agent.target_position = target
+
+
+func _stop_moving() -> void:
+	_moving = false
+	velocity = Vector2.ZERO
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation("idle"):
+		sprite.play("idle")
+	arrived_at.emit(global_position)
+
+
+func _on_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
+	move_and_slide()
+
+
+func _on_navigation_finished() -> void:
+	_stop_moving()
+
+
+func play_animation(anim_name: String) -> void:
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation(anim_name):
+		sprite.play(anim_name)
+
+
+func face_left() -> void:
+	sprite.flip_h = true
+
+
+func face_right() -> void:
+	sprite.flip_h = false

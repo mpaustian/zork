@@ -1,0 +1,187 @@
+{
+	"west_of_house": {
+		"name": "West of House",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"north": "north_of_house",
+			"south": "south_of_house",
+			"west": "forest_west",
+			"east": {
+				"target": "kitchen",
+				"requires_flag": "window_open",
+				"blocked_message": "The window is closed. It looks like it might open, though."
+			}
+		}
+	},
+	"north_of_house": {
+		"name": "North of House",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"south": "west_of_house",
+			"east": "east_of_house",
+			"west": "forest_west"
+		}
+	},
+	"south_of_house": {
+		"name": "South of House",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"north": "west_of_house",
+			"east": "east_of_house",
+			"west": "forest_west"
+		}
+	},
+	"east_of_house": {
+		"name": "Behind House",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"north": "north_of_house",
+			"south": "south_of_house",
+			"west": {
+				"target": "kitchen",
+				"requires_flag": "window_open",
+				"blocked_message": "The window is boarded shut from the inside."
+			}
+		}
+	},
+	"kitchen": {
+		"name": "Kitchen",
+		"dark": false,
+		"surface": "wood",
+		"exits": {
+			"west": "living_room",
+			"east": "east_of_house",
+			"up": "attic"
+		}
+	},
+	"living_room": {
+		"name": "Living Room",
+		"dark": false,
+		"surface": "wood",
+		"exits": {
+			"east": "kitchen",
+			"down": {
+				"target": "cellar",
+				"requires_flag": "trap_door_open",
+				"blocked_message": "There's an odd-looking rug on the floor, but no obvious way down."
+			}
+		}
+	},
+	"attic": {
+		"name": "Attic",
+		"dark": true,
+		"surface": "wood",
+		"exits": {
+			"down": "kitchen"
+		}
+	},
+	"cellar": {
+		"name": "Cellar",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"up": "living_room",
+			"north": "troll_room"
+		}
+	},
+	"troll_room": {
+		"name": "The Troll Room",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"south": "cellar",
+			"east": {
+				"target": "maze_entrance",
+				"requires_flag": "troll_defeated",
+				"blocked_message": "A menacing troll blocks your way, brandishing a bloody axe."
+			}
+		}
+	},
+	"maze_entrance": {
+		"name": "Maze",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"west": "troll_room",
+			"north": "maze_2",
+			"east": "maze_3",
+			"south": "maze_dead_end"
+		}
+	},
+	"maze_2": {
+		"name": "Maze",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"south": "maze_entrance",
+			"east": "maze_3",
+			"north": "maze_dead_end"
+		}
+	},
+	"maze_3": {
+		"name": "Maze",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"west": "maze_2",
+			"south": "maze_entrance",
+			"north": "round_room"
+		}
+	},
+	"maze_dead_end": {
+		"name": "Dead End",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"south": "maze_entrance"
+		}
+	},
+	"round_room": {
+		"name": "Round Room",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_echo",
+		"exits": {
+			"south": "maze_3",
+			"north": "cyclops_room",
+			"east": "narrow_passage",
+			"west": "loud_room"
+		}
+	},
+	"cyclops_room": {
+		"name": "Cyclops Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"south": "round_room",
+			"up": {
+				"target": "treasure_room",
+				"requires_flag": "cyclops_fled",
+				"blocked_message": "The Cyclops blocks the stairway, glaring at you with its single enormous eye."
+			}
+		}
+	},
+	"treasure_room": {
+		"name": "Treasure Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"down": "cyclops_room",
+			"south": "living_room_secret"
+		}
+	}
+}

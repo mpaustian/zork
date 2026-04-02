@@ -1,0 +1,103 @@
+{
+	"brass_lantern": {
+		"name": "Brass Lantern",
+		"description": "A battered brass lantern. It's seen better days, but still has some fuel left.",
+		"weight": 15,
+		"type": "light",
+		"takeable": true
+	},
+	"elvish_sword": {
+		"name": "Elvish Sword",
+		"description": "A beautiful elvish sword with strange etchings. It glows faintly with a pale blue light.",
+		"weight": 10,
+		"type": "weapon",
+		"takeable": true
+	},
+	"nasty_knife": {
+		"name": "Nasty Knife",
+		"description": "A nasty-looking knife. You consider your life choices.",
+		"weight": 5,
+		"type": "weapon",
+		"takeable": true
+	},
+	"rope": {
+		"name": "Rope",
+		"description": "A length of sturdy hemp rope. Useful for all sorts of adventuring mishaps.",
+		"weight": 10,
+		"type": "tool",
+		"takeable": true
+	},
+	"leaflet": {
+		"name": "Leaflet",
+		"description": "A small leaflet.",
+		"weight": 1,
+		"type": "misc",
+		"takeable": true
+	},
+	"jewel_encrusted_egg": {
+		"name": "Jewel-Encrusted Egg",
+		"description": "A beautiful egg, covered in delicate jewels. Something rattles inside.",
+		"weight": 5,
+		"type": "treasure",
+		"value": 5,
+		"takeable": true
+	},
+	"painting": {
+		"name": "Painting",
+		"description": "A painting of remarkable beauty, depicting a pastoral scene of impossible detail.",
+		"weight": 15,
+		"type": "treasure",
+		"value": 6,
+		"takeable": true
+	},
+	"torch": {
+		"name": "Torch",
+		"description": "An ancient torch that burns with a steady, unwavering flame. It never seems to go out.",
+		"weight": 10,
+		"type": "light",
+		"takeable": true
+	},
+	"bag_of_coins": {
+		"name": "Bag of Coins",
+		"description": "A leather bag filled with gold coins. They clink satisfyingly.",
+		"weight": 10,
+		"type": "treasure",
+		"value": 5,
+		"takeable": true
+	},
+	"troll_axe": {
+		"name": "Bloody Axe",
+		"description": "The troll's weapon. It's covered in... you don't want to think about what.",
+		"weight": 15,
+		"type": "weapon",
+		"takeable": false
+	},
+	"mailbox": {
+		"name": "Small Mailbox",
+		"description": "A small mailbox stands here, slightly askew. It has a tiny flag raised.",
+		"weight": 0,
+		"type": "interactive",
+		"takeable": false
+	},
+	"trophy_case": {
+		"name": "Trophy Case",
+		"description": "A large glass trophy case, currently gathering dust. It yearns for treasures.",
+		"weight": 0,
+		"type": "interactive",
+		"takeable": false
+	},
+	"oriental_rug": {
+		"name": "Oriental Rug",
+		"description": "A richly woven oriental rug covers the floor. There's something odd about its shape — a lump, perhaps?",
+		"weight": 0,
+		"type": "interactive",
+		"takeable": false
+	},
+	"trap_door": {
+		"name": "Trap Door",
+		"description": "A wooden trap door, set into the floor. It looks like it leads down into darkness.",
+		"weight": 0,
+		"type": "interactive",
+		"takeable": false
+	}
+}

@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://room_north_of_house"]
+
+[ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
+vertices = PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
+size = Vector2(12, 8)
+
+[node name="NorthOfHouse" type="Node2D"]
+script = ExtResource("1")
+room_id = "north_of_house"
+room_name = "North of House"
+surface_type = "grass"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.2, 0.45, 0.15, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+target_desired_distance = 4.0
+path_desired_distance = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_player_col")
+
+[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(15, 270)
+script = ExtResource("2")
+hotspot_id = "exit_west"
+display_name = "West"
+hotspot_type = 1
+exit_direction = "w"
+look_text = "A path leads west around the house."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
+shape = SubResource("RectangleShape2D_exit_w")
+
+[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(625, 270)
+script = ExtResource("2")
+hotspot_id = "exit_east"
+display_name = "East"
+hotspot_type = 1
+exit_direction = "e"
+look_text = "A path leads east around the house."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
+shape = SubResource("RectangleShape2D_exit_e")

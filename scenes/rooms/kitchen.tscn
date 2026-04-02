@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://room_kitchen"]
+
+[ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
+vertices = PackedVector2Array(40, 180, 600, 180, 600, 340, 40, 340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(40, 180, 600, 180, 600, 340, 40, 340)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_table"]
+size = Vector2(80, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lantern"]
+size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_up"]
+size = Vector2(60, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
+size = Vector2(12, 8)
+
+[node name="Kitchen" type="Node2D"]
+script = ExtResource("1")
+room_id = "kitchen"
+room_name = "Kitchen"
+surface_type = "wood"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.55, 0.4, 0.25, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+target_desired_distance = 4.0
+path_desired_distance = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_player_col")
+
+[node name="Table" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(300, 220)
+script = ExtResource("2")
+hotspot_id = "table"
+display_name = "Table"
+hotspot_type = 4
+look_text = "A sturdy wooden kitchen table. A brass lantern sits upon it."
+walk_to_point = Vector2(300, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+shape = SubResource("RectangleShape2D_table")
+
+[node name="BrassLantern" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(310, 210)
+script = ExtResource("2")
+hotspot_id = "brass_lantern"
+display_name = "Brass Lantern"
+hotspot_type = 0
+item_id = "brass_lantern"
+look_text = "A battered but serviceable brass lantern. It could prove useful in dark places."
+walk_to_point = Vector2(300, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrassLantern"]
+shape = SubResource("RectangleShape2D_lantern")
+
+[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(15, 260)
+script = ExtResource("2")
+hotspot_id = "exit_west"
+display_name = "West"
+hotspot_type = 1
+exit_direction = "w"
+look_text = "A doorway leads west to the living room."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
+shape = SubResource("RectangleShape2D_exit_w")
+
+[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(625, 260)
+script = ExtResource("2")
+hotspot_id = "exit_east"
+display_name = "East"
+hotspot_type = 1
+exit_direction = "e"
+look_text = "The east window looks out behind the house."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
+shape = SubResource("RectangleShape2D_exit_e")
+
+[node name="ExitUp" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(550, 170)
+script = ExtResource("2")
+hotspot_id = "exit_up"
+display_name = "Upstairs"
+hotspot_type = 1
+exit_direction = "up"
+look_text = "A narrow staircase leads upward."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitUp"]
+shape = SubResource("RectangleShape2D_exit_up")

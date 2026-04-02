@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://room_living_room"]
+
+[ext_resource type="Script" path="res://scripts/rooms/living_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
+vertices = PackedVector2Array(40, 180, 600, 180, 600, 340, 40, 340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(40, 180, 600, 180, 600, 340, 40, 340)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trophy"]
+size = Vector2(60, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rug"]
+size = Vector2(100, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trap"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
+size = Vector2(12, 8)
+
+[node name="LivingRoom" type="Node2D"]
+script = ExtResource("1")
+room_id = "living_room"
+room_name = "Living Room"
+surface_type = "wood"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.55, 0.4, 0.25, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+target_desired_distance = 4.0
+path_desired_distance = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_player_col")
+
+[node name="TrophyCase" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(150, 180)
+script = ExtResource("2")
+hotspot_id = "trophy_case"
+display_name = "Trophy Case"
+hotspot_type = 3
+look_text = "A magnificent trophy case, made of finest crystal. It appears to be empty — for now."
+walk_to_point = Vector2(150, 230)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrophyCase"]
+shape = SubResource("RectangleShape2D_trophy")
+
+[node name="OrientalRug" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(350, 290)
+script = ExtResource("2")
+hotspot_id = "oriental_rug"
+display_name = "Oriental Rug"
+hotspot_type = 3
+look_text = "A large oriental rug covers the center of the floor. There appears to be a lump underneath it."
+walk_to_point = Vector2(350, 280)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrientalRug"]
+shape = SubResource("RectangleShape2D_rug")
+
+[node name="TrapDoor" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(350, 290)
+visible = false
+script = ExtResource("2")
+hotspot_id = "trap_door"
+display_name = "Trap Door"
+hotspot_type = 3
+look_text = "A closed trap door set into the floor. It looks like it can be opened."
+walk_to_point = Vector2(320, 280)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrapDoor"]
+shape = SubResource("RectangleShape2D_trap")
+
+[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(625, 260)
+script = ExtResource("2")
+hotspot_id = "exit_east"
+display_name = "East"
+hotspot_type = 1
+exit_direction = "e"
+look_text = "A doorway leads east to the kitchen."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
+shape = SubResource("RectangleShape2D_exit_e")
