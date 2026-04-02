@@ -43,7 +43,7 @@ func _start_troll_combat() -> void:
 	# Load and start the combat scene
 	var combat_scene := load("res://scenes/combat/troll_combat.tscn")
 	if combat_scene:
-		var combat := combat_scene.instantiate()
+		var combat: Node = combat_scene.instantiate()
 		combat.combat_finished.connect(_on_combat_finished)
 		add_child(combat)
 	else:
