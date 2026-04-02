@@ -57,7 +57,7 @@ script = ExtResource("2")
 hotspot_id = "exit_west"
 display_name = "West"
 hotspot_type = 1
-exit_direction = "w"
+exit_direction = "west"
 look_text = "A passage leads west."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
@@ -69,7 +69,7 @@ script = ExtResource("2")
 hotspot_id = "exit_north"
 display_name = "North"
 hotspot_type = 1
-exit_direction = "n"
+exit_direction = "north"
 look_text = "A twisting passage leads north into the maze."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
@@ -81,7 +81,7 @@ script = ExtResource("2")
 hotspot_id = "exit_east"
 display_name = "East"
 hotspot_type = 1
-exit_direction = "e"
+exit_direction = "east"
 look_text = "A twisting passage leads east into the maze."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
@@ -93,7 +93,7 @@ script = ExtResource("2")
 hotspot_id = "exit_south"
 display_name = "South"
 hotspot_type = 1
-exit_direction = "s"
+exit_direction = "south"
 look_text = "A passage leads south."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]

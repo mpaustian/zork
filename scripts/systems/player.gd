@@ -1,23 +1,32 @@
 extends CharacterBody2D
 class_name Player
-## The adventurer. Click-to-move pathfinding, animation states.
+## The adventurer. Click-to-move pathfinding, placeholder colored sprite.
 
 signal arrived_at(position: Vector2)
 signal clicked_hotspot(hotspot: Node2D)
 
 const MOVE_SPEED := 80.0  # Pixels per second
-
-@export var nav_agent: NavigationAgent2D
+const PLAYER_COLOR := Color(0.2, 0.5, 0.9)
+const PLAYER_SIZE := Vector2(12, 24)
 
 var _moving := false
 var _target_pos := Vector2.ZERO
 
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _placeholder: ColorRect = null
 
 
 func _ready() -> void:
+	# Create a visible placeholder since we have no sprite art yet
+	_placeholder = ColorRect.new()
+	_placeholder.color = PLAYER_COLOR
+	_placeholder.size = PLAYER_SIZE
+	_placeholder.position = -PLAYER_SIZE / 2
+	_placeholder.z_index = 10
+	add_child(_placeholder)
+
 	if nav_agent:
-		nav_agent.velocity_computed.connect(_on_velocity_computed)
 		nav_agent.navigation_finished.connect(_on_navigation_finished)
 		nav_agent.target_desired_distance = 4.0
 		nav_agent.path_desired_distance = 4.0
@@ -37,15 +46,12 @@ func _physics_process(_delta: float) -> void:
 
 	velocity = direction * MOVE_SPEED
 
-	# Flip sprite based on movement direction
-	if velocity.x < -1:
-		sprite.flip_h = true
-	elif velocity.x > 1:
-		sprite.flip_h = false
-
-	# Play walk animation
-	if sprite.sprite_frames and sprite.sprite_frames.has_animation("walk"):
-		sprite.play("walk")
+	# Flip placeholder based on movement direction
+	if sprite and sprite.sprite_frames:
+		if velocity.x < -1:
+			sprite.flip_h = true
+		elif velocity.x > 1:
+			sprite.flip_h = false
 
 	move_and_slide()
 
@@ -62,14 +68,7 @@ func move_to(target: Vector2) -> void:
 func _stop_moving() -> void:
 	_moving = false
 	velocity = Vector2.ZERO
-	if sprite.sprite_frames and sprite.sprite_frames.has_animation("idle"):
-		sprite.play("idle")
 	arrived_at.emit(global_position)
-
-
-func _on_velocity_computed(safe_velocity: Vector2) -> void:
-	velocity = safe_velocity
-	move_and_slide()
 
 
 func _on_navigation_finished() -> void:
@@ -77,13 +76,15 @@ func _on_navigation_finished() -> void:
 
 
 func play_animation(anim_name: String) -> void:
-	if sprite.sprite_frames and sprite.sprite_frames.has_animation(anim_name):
+	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(anim_name):
 		sprite.play(anim_name)
 
 
 func face_left() -> void:
-	sprite.flip_h = true
+	if sprite:
+		sprite.flip_h = true
 
 
 func face_right() -> void:
-	sprite.flip_h = false
+	if sprite:
+		sprite.flip_h = false

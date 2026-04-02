@@ -59,7 +59,8 @@ func _is_over_hotspot() -> bool:
 	query.collide_with_bodies = false
 	var results := space.intersect_point(query)
 	for result in results:
-		if result["collider"] is Hotspot:
+		var collider: Object = result["collider"]
+		if collider is Hotspot:
 			return true
 	return false
 

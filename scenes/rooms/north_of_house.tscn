@@ -51,7 +51,7 @@ script = ExtResource("2")
 hotspot_id = "exit_west"
 display_name = "West"
 hotspot_type = 1
-exit_direction = "w"
+exit_direction = "west"
 look_text = "A path leads west around the house."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
@@ -63,7 +63,7 @@ script = ExtResource("2")
 hotspot_id = "exit_east"
 display_name = "East"
 hotspot_type = 1
-exit_direction = "e"
+exit_direction = "east"
 look_text = "A path leads east around the house."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]

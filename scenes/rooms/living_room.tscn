@@ -94,7 +94,7 @@ script = ExtResource("2")
 hotspot_id = "exit_east"
 display_name = "East"
 hotspot_type = 1
-exit_direction = "e"
+exit_direction = "east"
 look_text = "A doorway leads east to the kitchen."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]

@@ -63,7 +63,7 @@ script = ExtResource("2")
 hotspot_id = "exit_north"
 display_name = "North"
 hotspot_type = 1
-exit_direction = "n"
+exit_direction = "north"
 look_text = "A dark passage leads north into the underground."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
