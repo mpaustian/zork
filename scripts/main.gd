@@ -26,15 +26,24 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("highlight_hotspots"):
 		_hide_hotspots()
 
-	# Left-click on empty space = walk there
+	if GameManager.state != GameManager.GameState.PLAYING:
+		return
+
+	# Left-click: interact with hotspot or walk to location
 	if event.is_action_pressed("interact"):
-		if GameManager.state != GameManager.GameState.PLAYING:
-			return
-		# Only walk if we didn't click a hotspot or UI
-		if not _is_over_hotspot() and not _is_over_ui():
+		var hotspot := _get_hotspot_under_cursor()
+		if hotspot:
+			hotspot.hotspot_clicked.emit(hotspot, _get_default_verb(hotspot))
+		elif not _is_over_ui():
 			var player := get_tree().get_first_node_in_group("player")
 			if player and player.has_method("move_to"):
 				player.move_to(get_global_mouse_position())
+
+	# Right-click: show verb coin
+	elif event.is_action_pressed("context_menu"):
+		var hotspot := _get_hotspot_under_cursor()
+		if hotspot:
+			hotspot.hotspot_clicked.emit(hotspot, "verb_coin")
 
 
 func _show_hotspots() -> void:
@@ -51,7 +60,7 @@ func _hide_hotspots() -> void:
 			room.hide_all_hotspots()
 
 
-func _is_over_hotspot() -> bool:
+func _get_hotspot_under_cursor() -> Hotspot:
 	var space := get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
 	query.position = get_global_mouse_position()
@@ -61,8 +70,18 @@ func _is_over_hotspot() -> bool:
 	for result in results:
 		var collider: Object = result["collider"]
 		if collider is Hotspot:
-			return true
-	return false
+			return collider as Hotspot
+	return null
+
+
+func _get_default_verb(hotspot: Hotspot) -> String:
+	match hotspot.hotspot_type:
+		Hotspot.HotspotType.EXIT:
+			return "walk"
+		Hotspot.HotspotType.ITEM:
+			return "take"
+		_:
+			return "look"
 
 
 func _is_over_ui() -> bool:
