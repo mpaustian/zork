@@ -64,6 +64,10 @@ func get_flag(flag_name: String, default: Variant = false) -> Variant:
 	return flags.get(flag_name, default)
 
 
+func clear_flag(flag_name: String) -> void:
+	flags.erase(flag_name)
+
+
 func _check_rank() -> void:
 	var new_rank := "Beginner"
 	for threshold in RANKS:

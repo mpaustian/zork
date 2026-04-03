@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://room_dam_lobby"]
+
+[ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
+vertices = PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
+size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guidebook_rack"]
+size = Vector2(30, 40)
+
+[node name="DamLobby" type="Node2D"]
+script = ExtResource("1")
+room_id = "dam_lobby"
+room_name = "DamLobby"
+surface_type = "stone"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.35, 0.35, 0.38, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+target_desired_distance = 4.0
+path_desired_distance = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_player_col")
+
+[node name="GuidebookRack" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(200, 250)
+script = ExtResource("2")
+hotspot_id = "guidebook_rack"
+display_name = "Guidebook Rack"
+hotspot_type = 4
+look_text = "A rack near the entrance holds dusty guidebooks."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GuidebookRack"]
+shape = SubResource("RectangleShape2D_guidebook_rack")
+
+[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 175)
+script = ExtResource("2")
+hotspot_id = "exit_north"
+display_name = "North"
+hotspot_type = 1
+exit_direction = "north"
+look_text = "A corridor leads north to the dam."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
+shape = SubResource("RectangleShape2D_exit_n")
+
+[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(625, 270)
+script = ExtResource("2")
+hotspot_id = "exit_east"
+display_name = "East"
+hotspot_type = 1
+exit_direction = "east"
+look_text = "A door leads east to the maintenance room."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
+shape = SubResource("RectangleShape2D_exit_e")
+
+[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 345)
+script = ExtResource("2")
+hotspot_id = "exit_south"
+display_name = "South"
+hotspot_type = 1
+exit_direction = "south"
+look_text = "An exit leads south."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
+shape = SubResource("RectangleShape2D_exit_s")

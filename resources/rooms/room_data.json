@@ -181,7 +181,172 @@
 		"surface": "stone",
 		"exits": {
 			"down": "cyclops_room",
-			"south": "living_room_secret"
+			"south": "strange_passage"
+		}
+	},
+	"forest_west": {
+		"name": "Forest",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"east": "west_of_house",
+			"north": "forest_path",
+			"south": "clearing",
+			"west": "forest_path"
+		}
+	},
+	"forest_path": {
+		"name": "Forest Path",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"south": "forest_west",
+			"east": "north_of_house",
+			"north": "clearing",
+			"west": "canyon_view"
+		}
+	},
+	"clearing": {
+		"name": "Clearing",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"north": "forest_path",
+			"east": "forest_west",
+			"south": "south_of_house",
+			"west": "canyon_view"
+		}
+	},
+	"canyon_view": {
+		"name": "Canyon View",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "wind",
+		"exits": {
+			"east": "forest_path",
+			"south": "clearing",
+			"down": "rocky_ledge"
+		}
+	},
+	"rocky_ledge": {
+		"name": "Rocky Ledge",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "wind",
+		"exits": {
+			"up": "canyon_view",
+			"down": "canyon_bottom"
+		}
+	},
+	"canyon_bottom": {
+		"name": "Canyon Bottom",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"up": "rocky_ledge",
+			"north": "dam_base"
+		}
+	},
+	"narrow_passage": {
+		"name": "Narrow Passage",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"west": "round_room",
+			"east": "deep_canyon"
+		}
+	},
+	"loud_room": {
+		"name": "Loud Room",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"east": "round_room",
+			"west": "damp_cave",
+			"up": "deep_canyon"
+		}
+	},
+	"deep_canyon": {
+		"name": "Deep Canyon",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"west": "narrow_passage",
+			"down": "loud_room",
+			"north": "dam_lobby"
+		}
+	},
+	"damp_cave": {
+		"name": "Damp Cave",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"east": "loud_room"
+		}
+	},
+	"strange_passage": {
+		"name": "Strange Passage",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "treasure_room",
+			"south": "living_room"
+		}
+	},
+	"dam": {
+		"name": "Flood Control Dam #3",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"south": "dam_lobby",
+			"east": "dam_base",
+			"north": "reservoir_south"
+		}
+	},
+	"dam_lobby": {
+		"name": "Dam Lobby",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "dam",
+			"east": "maintenance_room",
+			"south": "deep_canyon"
+		}
+	},
+	"maintenance_room": {
+		"name": "Maintenance Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"west": "dam_lobby"
+		}
+	},
+	"dam_base": {
+		"name": "Dam Base",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"west": "dam",
+			"south": "canyon_bottom"
+		}
+	},
+	"reservoir_south": {
+		"name": "Reservoir South",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"south": "dam"
 		}
 	}
 }

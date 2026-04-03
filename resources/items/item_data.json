@@ -99,5 +99,42 @@
 		"weight": 0,
 		"type": "interactive",
 		"takeable": false
+	},
+	"wrench": {
+		"name": "Wrench",
+		"description": "A heavy wrench, perfect for loosening stubborn bolts.",
+		"weight": 10,
+		"type": "tool",
+		"takeable": true
+	},
+	"platinum_bar": {
+		"name": "Platinum Bar",
+		"description": "A bar of pure platinum. Incredibly heavy, incredibly valuable.",
+		"weight": 20,
+		"type": "treasure",
+		"value": 10,
+		"takeable": true
+	},
+	"guidebook": {
+		"name": "Dam Guidebook",
+		"description": "A guidebook titled 'Flood Control Dam #3: A Tourist's Guide'. It contains useful information about the dam's operation.",
+		"weight": 2,
+		"type": "misc",
+		"takeable": true
+	},
+	"crystal_trident": {
+		"name": "Crystal Trident",
+		"description": "A magnificent trident carved from a single crystal. It catches the light beautifully.",
+		"weight": 10,
+		"type": "treasure",
+		"value": 11,
+		"takeable": true
+	},
+	"pile_of_leaves": {
+		"name": "Pile of Leaves",
+		"description": "A pile of leaves that has accumulated in the clearing. Something might be hidden underneath.",
+		"weight": 0,
+		"type": "interactive",
+		"takeable": false
 	}
 }
