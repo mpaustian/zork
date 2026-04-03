@@ -101,7 +101,10 @@ text = "0 / 350"
 horizontal_alignment = 2
 mouse_filter = 2
 
-[node name="VerbCoin" type="Control" parent="UILayer"]
+[node name="VerbCoinLayer" type="CanvasLayer" parent="."]
+layer = 15
+
+[node name="VerbCoin" type="Control" parent="VerbCoinLayer"]
 anchors_preset = 0
 script = ExtResource("4")
 

@@ -78,10 +78,11 @@ func show_for_hotspot(hotspot: Hotspot, screen_pos: Vector2) -> void:
 		add_child(btn)
 		_verb_buttons.append(btn)
 
-	# Position the coin, keeping it on screen
+	# Position the coin, keeping it away from UI edges
+	# Narrator is top 48px, inventory is bottom 40px, buttons radiate ~50px
 	global_position = screen_pos
 	global_position.x = clampf(global_position.x, 60, 580)
-	global_position.y = clampf(global_position.y, 40, 320)
+	global_position.y = clampf(global_position.y, 100, 270)
 
 	visible = true
 	_is_visible = true
