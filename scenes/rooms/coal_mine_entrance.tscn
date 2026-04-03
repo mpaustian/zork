@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_coal_mine_entrance"]
+[gd_scene load_steps=10 format=3 uid="uid://room_coal_mine_entrance"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -20,6 +20,9 @@ size = Vector2(100, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mine_sign"]
 size = Vector2(50, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
+size = Vector2(30, 140)
 
 [node name="CoalMineEntrance" type="Node2D"]
 script = ExtResource("1")
@@ -83,3 +86,15 @@ look_text = "A faded wooden sign reads: 'COAL MINE — DANGER — NO OPEN FLAMES
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MineSign"]
 shape = SubResource("RectangleShape2D_mine_sign")
+
+[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(15, 270)
+script = ExtResource("2")
+hotspot_id = "exit_west"
+display_name = "West"
+hotspot_type = 1
+exit_direction = "west"
+look_text = "A tunnel leads west into the mine."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
+shape = SubResource("RectangleShape2D_exit_w")

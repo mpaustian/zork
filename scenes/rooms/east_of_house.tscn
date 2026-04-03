@@ -80,7 +80,7 @@ hotspot_id = "exit_south"
 display_name = "South"
 hotspot_type = 1
 exit_direction = "south"
-look_text = "A path leads around the south side of the house."
+look_text = "A path leads south toward a garden."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
 shape = SubResource("RectangleShape2D_exit_s")

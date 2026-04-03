@@ -184,5 +184,36 @@
 	"look_pot_of_gold": "A pot brimming with gold coins, each one stamped with the seal of the Great Underground Empire. It's the kind of treasure that makes the whole adventure worthwhile.",
 	"look_painting_room": "A painting of remarkable beauty. The pastoral scene seems almost alive — the trees sway, the water sparkles. You could stare at it for hours. The frame alone is probably worth a fortune.",
 	"look_raft_deflated": "A rubber raft, currently flat as a pancake. There's a valve on one side for inflation. You'd need some kind of pump.",
-	"look_air_pump": "A sturdy hand-operated air pump. The label reads 'FROBOZZ MAGIC AIR PUMP CO.' Guaranteed to inflate anything, or your zorkmids back."
+	"look_air_pump": "A sturdy hand-operated air pump. The label reads 'FROBOZZ MAGIC AIR PUMP CO.' Guaranteed to inflate anything, or your zorkmids back.",
+
+	"look_odysseus_scroll": "The scroll tells the tale of Odysseus, who defeated the Cyclops Polyphemus not through strength but through cunning. 'Nobody is my name,' he told the beast. The Cyclops, it seems, was not the brightest creature. One-eyed and one-brained, as the saying goes.",
+	"look_air_pump_room": "A sturdy air pump with a Frobozz Magic logo. It could inflate just about anything — rafts, balloons, egos.",
+
+	"room_stone_barrow_first": "An ancient stone barrow rises from the earth, its weathered blocks fitted together with a precision that speaks of forgotten craftsmanship. A dark opening yawns in one side, exhaling cool air that carries the scent of ages past. This is old. Older than the house. Older, perhaps, than memory.",
+	"room_stone_barrow": "The stone barrow. The dark opening breathes its ancient breath.",
+	"room_forest_south_first": "You are in a dense part of the forest south of the house. The trees here grow close together, their branches interlocking overhead like the fingers of old friends. Paths lead in several directions through the undergrowth.",
+	"room_forest_south": "The southern forest. The trees keep their counsel.",
+	"room_behind_house_garden_first": "Behind the house, a garden has gone magnificently to seed. What were once neat beds of herbs and vegetables are now a riot of weeds, wildflowers, and ambitious vines. A rusted trowel lies half-buried in the soil, abandoned by its owner to whatever fate befell them.",
+	"room_behind_house_garden": "The garden. Nature's hostile takeover is well underway.",
+	"room_cliff_edge_first": "You stand at the very edge of a sheer cliff. The ground simply stops, and beyond it there is nothing but air and a very long way down. The wind tugs at your clothes with the gentle insistence of someone trying to tell you something important about gravity.",
+	"room_cliff_edge": "The cliff edge. Still a terrible place for a picnic.",
+	"room_dark_passage_first": "This is a dark, narrow passage running north and south. The walls are rough-hewn and damp to the touch. The air is thick with the smell of wet stone and the peculiar loneliness that only underground places possess.",
+	"room_dark_passage": "The dark passage. Dark. Passage. What more do you want?",
+	"room_engravings_cave_first": "The walls of this cave are covered — absolutely covered — in ancient engravings. Maps, diagrams, warnings in forgotten languages, and what appear to be restaurant reviews for underground establishments long since closed. Someone spent a very long time down here with a chisel and strong opinions.",
+	"room_engravings_cave": "The engravings cave. The ancient reviews are still scathing.",
+	"room_dome_room_first": "You stand in a magnificent domed chamber. The ceiling arches far overhead, its surface studded with crystals that catch your light and scatter it into a thousand tiny stars. The effect is breathtaking — like standing inside a geode, if geodes were the size of cathedrals.",
+	"room_dome_room": "The dome room. The crystal ceiling still dazzles.",
+	"room_torch_room_first": "This chamber once held torches in iron brackets along its walls. The brackets remain, empty and rusted. Scorch marks on the stone above them speak of centuries of illumination, now extinguished. The room feels like it's waiting for someone to light it up again.",
+	"room_torch_room": "The torch room. The empty brackets wait with infinite patience.",
+	"room_winding_passage_first": "The passage here winds back and forth in a serpentine fashion, as if the original builders couldn't agree on which direction to tunnel. The sound of dripping water echoes from somewhere ahead, and the air grows cooler with each turn.",
+	"room_winding_passage": "The winding passage. Still winding. Still a passage.",
+	"room_underground_river_first": "A dark underground river flows swiftly through this cavern, its surface black and glassy in your light. The sound of rushing water fills the space. The river is wide and deep, and cold enough to make your teeth ache just looking at it.",
+	"room_underground_river": "The underground river. It flows on, caring nothing for adventurers.",
+	"room_crypt_first": "You have entered a crypt. Stone sarcophagi line the walls, their lids carved with the likenesses of their occupants — all of whom look profoundly displeased about their current accommodations. The central sarcophagus is larger than the rest, its lid slightly ajar, as if its occupant has been stepping out.",
+	"room_crypt": "The crypt. The residents are quiet. Too quiet.",
+	"room_mine_tunnel_first": "This is a side tunnel branching off from the main mine. Rusted mine cart rails run along the floor, and the timber supports here look even less confident than those in the main shaft. The air smells of coal dust and regret.",
+	"room_mine_tunnel": "The mine tunnel. The rails lead nowhere useful. The supports lead nowhere reassuring.",
+
+	"endgame_victory": "The last treasure clicks into place. The trophy case shimmers with an inner light, and for the first time, the narrator is speechless. Almost. You have done it. Every treasure recovered. Every puzzle solved. Every death survived (eventually). You are the Greatest Adventurer the Great Underground Empire has ever known. The narrator tips his metaphorical hat. Well played.",
+	"endgame_rank": "Your final rank: Greatest Adventurer. The Great Underground Empire salutes you."
 }

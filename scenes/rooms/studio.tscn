@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://room_studio"]
+[gd_scene load_steps=9 format=3 uid="uid://room_studio"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -17,6 +17,9 @@ size = Vector2(200, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_easel"]
 size = Vector2(30, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scroll"]
+size = Vector2(20, 15)
 
 [node name="Studio" type="Node2D"]
 script = ExtResource("1")
@@ -68,3 +71,15 @@ look_text = "An artist's easel stands in the center of the room, holding an empt
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Easel"]
 shape = SubResource("RectangleShape2D_easel")
+
+[node name="OdysseusScroll" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(450, 280)
+script = ExtResource("2")
+hotspot_id = "odysseus_scroll"
+display_name = "Ancient Scroll"
+hotspot_type = 0
+item_id = "odysseus_scroll"
+look_text = "An ancient scroll lies on a shelf, partially unrolled. The visible text mentions a one-eyed giant and a clever hero."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OdysseusScroll"]
+shape = SubResource("RectangleShape2D_scroll")

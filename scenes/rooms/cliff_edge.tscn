@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_damp_cave"]
+[gd_scene load_steps=8 format=3 uid="uid://room_cliff_edge"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -15,23 +15,20 @@ size = Vector2(12, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
 size = Vector2(30, 140)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
-size = Vector2(200, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_precipice"]
+size = Vector2(60, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
-size = Vector2(30, 140)
-
-[node name="DampCave" type="Node2D"]
+[node name="CliffEdge" type="Node2D"]
 script = ExtResource("1")
-room_id = "damp_cave"
-room_name = "Damp Cave"
+room_id = "cliff_edge"
+room_name = "Cliff Edge"
 surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.22, 0.25, 0.28, 1)
+color = Color(0.5, 0.48, 0.4, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -49,6 +46,17 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
+[node name="Precipice" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(200, 220)
+script = ExtResource("2")
+hotspot_id = "precipice"
+display_name = "Precipice"
+hotspot_type = 4
+look_text = "A sheer drop into nothingness. Far below, you can hear the river. This is emphatically not a place to take a casual stroll."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Precipice"]
+shape = SubResource("RectangleShape2D_precipice")
+
 [node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(625, 270)
 script = ExtResource("2")
@@ -56,31 +64,7 @@ hotspot_id = "exit_east"
 display_name = "East"
 hotspot_type = 1
 exit_direction = "east"
-look_text = "A damp passage leads east."
+look_text = "A path leads east along the canyon rim."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
 shape = SubResource("RectangleShape2D_exit_e")
-
-[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 345)
-script = ExtResource("2")
-hotspot_id = "exit_south"
-display_name = "South"
-hotspot_type = 1
-exit_direction = "south"
-look_text = "A passage leads south into an ancient temple."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
-shape = SubResource("RectangleShape2D_exit_s")
-
-[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(15, 270)
-script = ExtResource("2")
-hotspot_id = "exit_west"
-display_name = "West"
-hotspot_type = 1
-exit_direction = "west"
-look_text = "A passage leads west into a torchlit chamber."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
-shape = SubResource("RectangleShape2D_exit_w")

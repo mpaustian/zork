@@ -217,5 +217,12 @@
 		"weight": 8,
 		"type": "tool",
 		"takeable": true
+	},
+	"odysseus_scroll": {
+		"name": "Ancient Scroll",
+		"description": "A weathered scroll bearing the tale of Odysseus and the Cyclops. The text is faded but legible.",
+		"weight": 2,
+		"type": "misc",
+		"takeable": true
 	}
 }

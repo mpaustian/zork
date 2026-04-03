@@ -34,7 +34,8 @@
 		"exits": {
 			"north": "west_of_house",
 			"east": "east_of_house",
-			"west": "forest_west"
+			"west": "forest_west",
+			"south": "forest_south"
 		}
 	},
 	"east_of_house": {
@@ -44,7 +45,7 @@
 		"ambient_sound": "forest_birds",
 		"exits": {
 			"north": "north_of_house",
-			"south": "south_of_house",
+			"south": "behind_house_garden",
 			"west": {
 				"target": "kitchen",
 				"requires_flag": "window_open",
@@ -90,7 +91,8 @@
 		"ambient_sound": "underground_drip",
 		"exits": {
 			"up": "living_room",
-			"north": "troll_room"
+			"north": "troll_room",
+			"south": "dark_passage"
 		}
 	},
 	"troll_room": {
@@ -229,7 +231,8 @@
 		"exits": {
 			"east": "forest_path",
 			"south": "clearing",
-			"down": "rocky_ledge"
+			"down": "rocky_ledge",
+			"west": "cliff_edge"
 		}
 	},
 	"rocky_ledge": {
@@ -282,7 +285,8 @@
 		"exits": {
 			"west": "narrow_passage",
 			"down": "loud_room",
-			"north": "dam_lobby"
+			"north": "dam_lobby",
+			"east": "winding_passage"
 		}
 	},
 	"damp_cave": {
@@ -292,7 +296,8 @@
 		"ambient_sound": "underground_drip",
 		"exits": {
 			"east": "loud_room",
-			"south": "temple"
+			"south": "temple",
+			"west": "torch_room"
 		}
 	},
 	"strange_passage": {
@@ -360,7 +365,8 @@
 		"exits": {
 			"north": "damp_cave",
 			"east": "egyptian_room",
-			"south": "altar"
+			"south": "altar",
+			"west": "crypt"
 		}
 	},
 	"egyptian_room": {
@@ -390,7 +396,8 @@
 		"surface": "stone",
 		"exits": {
 			"up": "altar",
-			"south": "land_of_dead"
+			"south": "land_of_dead",
+			"north": "crypt"
 		}
 	},
 	"land_of_dead": {
@@ -407,7 +414,8 @@
 		"surface": "stone",
 		"exits": {
 			"north": "narrow_passage",
-			"down": "shaft_room"
+			"down": "shaft_room",
+			"west": "mine_tunnel"
 		}
 	},
 	"shaft_room": {
@@ -548,6 +556,121 @@
 		"surface": "wood",
 		"exits": {
 			"south": "gallery"
+		}
+	},
+	"stone_barrow": {
+		"name": "Stone Barrow",
+		"dark": false,
+		"surface": "stone",
+		"exits": {
+			"east": "forest_south",
+			"down": "cellar"
+		}
+	},
+	"forest_south": {
+		"name": "Forest South",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"north": "south_of_house",
+			"west": "stone_barrow",
+			"east": "behind_house_garden"
+		}
+	},
+	"behind_house_garden": {
+		"name": "Garden",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"west": "forest_south",
+			"north": "east_of_house"
+		}
+	},
+	"cliff_edge": {
+		"name": "Cliff Edge",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "wind",
+		"exits": {
+			"east": "canyon_view"
+		}
+	},
+	"dark_passage": {
+		"name": "Dark Passage",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"north": "cellar",
+			"south": "engravings_cave"
+		}
+	},
+	"engravings_cave": {
+		"name": "Engravings Cave",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "dark_passage",
+			"south": "dome_room",
+			"east": "deep_canyon"
+		}
+	},
+	"dome_room": {
+		"name": "Dome Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "engravings_cave",
+			"down": "torch_room"
+		}
+	},
+	"torch_room": {
+		"name": "Torch Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"up": "dome_room",
+			"east": "damp_cave"
+		}
+	},
+	"winding_passage": {
+		"name": "Winding Passage",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"west": "deep_canyon",
+			"south": "underground_river"
+		}
+	},
+	"underground_river": {
+		"name": "Underground River",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"north": "winding_passage",
+			"west": "mine_tunnel"
+		}
+	},
+	"crypt": {
+		"name": "Crypt",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"east": "temple",
+			"south": "hades_entrance"
+		}
+	},
+	"mine_tunnel": {
+		"name": "Mine Tunnel",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"east": "underground_river",
+			"north": "coal_mine_entrance"
 		}
 	}
 }

@@ -28,6 +28,7 @@ func save_game(filename: String = AUTO_SAVE_FILE) -> bool:
 		"lighting": LightingManager.get_save_data(),
 		"narrator": NarratorManager.get_save_data(),
 		"death": DeathManager.get_save_data(),
+		"thief": ThiefManager.get_save_data(),
 	}
 
 	var path := SAVE_DIR + filename
@@ -59,6 +60,7 @@ func load_game(filename: String = AUTO_SAVE_FILE) -> bool:
 	LightingManager.load_save_data(data.get("lighting", {}))
 	NarratorManager.load_save_data(data.get("narrator", {}))
 	DeathManager.load_save_data(data.get("death", {}))
+	ThiefManager.load_save_data(data.get("thief", {}))
 	RoomManager.load_save_data(data.get("room", {}))
 	return true
 

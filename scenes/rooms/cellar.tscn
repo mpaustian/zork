@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://room_cellar"]
+[gd_scene load_steps=9 format=3 uid="uid://room_cellar"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -13,6 +13,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(40, 180, 600, 180, 600,
 size = Vector2(60, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
 size = Vector2(200, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
@@ -69,3 +72,15 @@ look_text = "A dark passage leads north into the underground."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
 shape = SubResource("RectangleShape2D_exit_n")
+
+[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 345)
+script = ExtResource("2")
+hotspot_id = "exit_south"
+display_name = "South"
+hotspot_type = 1
+exit_direction = "south"
+look_text = "A dark passage leads south, deeper underground."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
+shape = SubResource("RectangleShape2D_exit_s")

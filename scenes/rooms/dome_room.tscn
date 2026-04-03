@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://room_deep_canyon"]
+[gd_scene load_steps=9 format=3 uid="uid://room_dome_room"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -12,29 +12,26 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
-size = Vector2(30, 140)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_down"]
 size = Vector2(100, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
-size = Vector2(200, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dome_ceiling"]
+size = Vector2(100, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
-size = Vector2(30, 140)
-
-[node name="DeepCanyon" type="Node2D"]
+[node name="DomeRoom" type="Node2D"]
 script = ExtResource("1")
-room_id = "deep_canyon"
-room_name = "DeepCanyon"
+room_id = "dome_room"
+room_name = "Dome Room"
 surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.28, 0.28, 0.32, 1)
+color = Color(0.35, 0.33, 0.4, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -52,29 +49,16 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
-[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(15, 270)
+[node name="DomeCeiling" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 180)
 script = ExtResource("2")
-hotspot_id = "exit_west"
-display_name = "West"
-hotspot_type = 1
-exit_direction = "west"
-look_text = "A passage leads west."
+hotspot_id = "dome_ceiling"
+display_name = "Domed Ceiling"
+hotspot_type = 4
+look_text = "The ceiling arches into a perfect dome high above, studded with crystals that catch your light and scatter it into a thousand tiny stars."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
-shape = SubResource("RectangleShape2D_exit_w")
-
-[node name="ExitDown" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(480, 345)
-script = ExtResource("2")
-hotspot_id = "exit_down"
-display_name = "Down"
-hotspot_type = 1
-exit_direction = "down"
-look_text = "A steep descent leads further into the canyon."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDown"]
-shape = SubResource("RectangleShape2D_exit_down")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DomeCeiling"]
+shape = SubResource("RectangleShape2D_dome_ceiling")
 
 [node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 175)
@@ -83,19 +67,19 @@ hotspot_id = "exit_north"
 display_name = "North"
 hotspot_type = 1
 exit_direction = "north"
-look_text = "A path leads north along the canyon."
+look_text = "A passage leads north to the engravings cave."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
 shape = SubResource("RectangleShape2D_exit_n")
 
-[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(625, 270)
+[node name="ExitDown" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(480, 345)
 script = ExtResource("2")
-hotspot_id = "exit_east"
-display_name = "East"
+hotspot_id = "exit_down"
+display_name = "Down"
 hotspot_type = 1
-exit_direction = "east"
-look_text = "A winding passage leads east."
+exit_direction = "down"
+look_text = "A narrow stairway spirals downward from the center of the dome."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
-shape = SubResource("RectangleShape2D_exit_e")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDown"]
+shape = SubResource("RectangleShape2D_exit_down")

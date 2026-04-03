@@ -8,17 +8,17 @@ signal game_over(won: bool)
 
 enum GameState { PLAYING, PAUSED, DEATH_SCENE, COMBAT, MENU }
 
-const MAX_SCORE := 350
+const MAX_SCORE := 150
 const RANKS := {
 	0: "Beginner",
-	25: "Amateur Adventurer",
-	50: "Novice Adventurer",
-	100: "Junior Adventurer",
-	150: "Seasoned Adventurer",
-	200: "Senior Adventurer",
-	250: "Expert Adventurer",
-	300: "Master Adventurer",
-	350: "Greatest Adventurer",
+	15: "Amateur Adventurer",
+	30: "Novice Adventurer",
+	50: "Junior Adventurer",
+	75: "Seasoned Adventurer",
+	100: "Senior Adventurer",
+	120: "Expert Adventurer",
+	135: "Master Adventurer",
+	150: "Greatest Adventurer",
 }
 
 var state: GameState = GameState.PLAYING
@@ -48,6 +48,7 @@ func add_score(points: int, _reason: String = "") -> void:
 		_check_rank()
 	if score >= MAX_SCORE:
 		game_over.emit(true)
+		NarratorManager.narrate("endgame_victory")
 
 
 func place_treasure(treasure_id: String, points: int) -> void:

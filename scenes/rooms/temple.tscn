@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://room_temple"]
+[gd_scene load_steps=12 format=3 uid="uid://room_temple"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -26,6 +26,9 @@ size = Vector2(20, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_temple_carvings"]
 size = Vector2(60, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
+size = Vector2(30, 140)
 
 [node name="Temple" type="Node2D"]
 script = ExtResource("1")
@@ -113,3 +116,15 @@ look_text = "The walls are covered in ancient carvings depicting scenes of worsh
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TempleCarvings"]
 shape = SubResource("RectangleShape2D_temple_carvings")
+
+[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(15, 270)
+script = ExtResource("2")
+hotspot_id = "exit_west"
+display_name = "West"
+hotspot_type = 1
+exit_direction = "west"
+look_text = "A cold, dark passage leads west into the crypt."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
+shape = SubResource("RectangleShape2D_exit_w")

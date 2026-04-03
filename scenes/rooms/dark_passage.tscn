@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_dam_base"]
+[gd_scene load_steps=8 format=3 uid="uid://room_dark_passage"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -12,26 +12,23 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
-size = Vector2(30, 140)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
 size = Vector2(200, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pump"]
-size = Vector2(20, 25)
-
-[node name="DamBase" type="Node2D"]
+[node name="DarkPassage" type="Node2D"]
 script = ExtResource("1")
-room_id = "dam_base"
-room_name = "DamBase"
+room_id = "dark_passage"
+room_name = "Dark Passage"
 surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.4, 0.42, 0.45, 1)
+color = Color(0.2, 0.2, 0.22, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -49,17 +46,17 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
-[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(15, 270)
+[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 175)
 script = ExtResource("2")
-hotspot_id = "exit_west"
-display_name = "West"
+hotspot_id = "exit_north"
+display_name = "North"
 hotspot_type = 1
-exit_direction = "west"
-look_text = "A path leads west along the base of the dam."
+exit_direction = "north"
+look_text = "The passage leads north to the cellar."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
-shape = SubResource("RectangleShape2D_exit_w")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
+shape = SubResource("RectangleShape2D_exit_n")
 
 [node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 345)
@@ -68,19 +65,7 @@ hotspot_id = "exit_south"
 display_name = "South"
 hotspot_type = 1
 exit_direction = "south"
-look_text = "A trail leads south away from the dam."
+look_text = "The passage continues south into darkness."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
 shape = SubResource("RectangleShape2D_exit_s")
-
-[node name="AirPump" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(250, 290)
-script = ExtResource("2")
-hotspot_id = "air_pump"
-display_name = "Air Pump"
-hotspot_type = 0
-item_id = "air_pump"
-look_text = "A hand-operated air pump lies against the dam wall. The label reads 'FROBOZZ MAGIC AIR PUMP CO.'"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AirPump"]
-shape = SubResource("RectangleShape2D_pump")
