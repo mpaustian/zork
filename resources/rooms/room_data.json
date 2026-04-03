@@ -21,6 +21,7 @@
 		"surface": "grass",
 		"ambient_sound": "forest_birds",
 		"exits": {
+			"north": "forest_north",
 			"south": "west_of_house",
 			"east": "east_of_house",
 			"west": "forest_west"
@@ -116,7 +117,7 @@
 		"ambient_sound": "underground_drip",
 		"exits": {
 			"west": "troll_room",
-			"north": "maze_2",
+			"north": "maze_4",
 			"east": "maze_3",
 			"south": "maze_dead_end"
 		}
@@ -128,7 +129,7 @@
 		"ambient_sound": "underground_drip",
 		"exits": {
 			"south": "maze_entrance",
-			"east": "maze_3",
+			"east": "maze_6",
 			"north": "maze_dead_end"
 		}
 	},
@@ -138,7 +139,7 @@
 		"surface": "stone",
 		"ambient_sound": "underground_drip",
 		"exits": {
-			"west": "maze_2",
+			"west": "maze_5",
 			"south": "maze_entrance",
 			"north": "round_room"
 		}
@@ -229,6 +230,7 @@
 		"surface": "stone",
 		"ambient_sound": "wind",
 		"exits": {
+			"north": "hilltop",
 			"east": "forest_path",
 			"south": "clearing",
 			"down": "rocky_ledge",
@@ -346,7 +348,8 @@
 		"ambient_sound": "river_rush",
 		"exits": {
 			"west": "dam",
-			"south": "canyon_bottom"
+			"south": "canyon_bottom",
+			"east": "sandy_beach"
 		}
 	},
 	"reservoir_south": {
@@ -469,7 +472,8 @@
 		"ambient_sound": "river_rush",
 		"exits": {
 			"east": "dam",
-			"north": "stream_view"
+			"north": "stream_view",
+			"west": "frigid_river_1"
 		}
 	},
 	"stream_view": {
@@ -564,6 +568,7 @@
 		"surface": "stone",
 		"exits": {
 			"east": "forest_south",
+			"west": "overgrown_path",
 			"down": "cellar"
 		}
 	},
@@ -671,6 +676,158 @@
 		"exits": {
 			"east": "underground_river",
 			"north": "coal_mine_entrance"
+		}
+	},
+	"frigid_river_1": {
+		"name": "Frigid River",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"east": "reservoir_north",
+			"south": "frigid_river_2"
+		}
+	},
+	"frigid_river_2": {
+		"name": "Frigid River",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"south": "frigid_river_3"
+		}
+	},
+	"frigid_river_3": {
+		"name": "Frigid River",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"south": "frigid_river_4",
+			"west": "shore_cave"
+		}
+	},
+	"frigid_river_4": {
+		"name": "Frigid River",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"south": "sandy_beach"
+		}
+	},
+	"sandy_beach": {
+		"name": "Sandy Beach",
+		"dark": false,
+		"surface": "dirt",
+		"exits": {
+			"north": "frigid_river_4",
+			"west": "dam_base"
+		}
+	},
+	"shore_cave": {
+		"name": "Shore Cave",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"east": "frigid_river_3"
+		}
+	},
+	"maze_4": {
+		"name": "Maze",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"north": "maze_2",
+			"east": "maze_5",
+			"south": "maze_entrance",
+			"west": "maze_dead_end_2"
+		}
+	},
+	"maze_5": {
+		"name": "Maze",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"north": "maze_3",
+			"west": "maze_4",
+			"south": "maze_6",
+			"east": "maze_dead_end"
+		}
+	},
+	"maze_6": {
+		"name": "Maze",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"north": "maze_5",
+			"west": "maze_entrance",
+			"east": "maze_4"
+		}
+	},
+	"maze_dead_end_2": {
+		"name": "Dead End",
+		"dark": true,
+		"surface": "stone",
+		"ambient_sound": "underground_drip",
+		"exits": {
+			"north": "maze_4",
+			"east": "maze_3"
+		}
+	},
+	"forest_north": {
+		"name": "Forest",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"south": "north_of_house",
+			"west": "forest_path",
+			"east": "up_a_tree"
+		}
+	},
+	"up_a_tree": {
+		"name": "Up a Tree",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"west": "forest_north",
+			"down": "forest_clearing_2"
+		}
+	},
+	"forest_clearing_2": {
+		"name": "Forest Clearing",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"up": "up_a_tree",
+			"south": "forest_west",
+			"east": "forest_north"
+		}
+	},
+	"overgrown_path": {
+		"name": "Overgrown Path",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "forest_birds",
+		"exits": {
+			"east": "stone_barrow",
+			"north": "hilltop"
+		}
+	},
+	"hilltop": {
+		"name": "Hilltop",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "wind",
+		"exits": {
+			"south": "overgrown_path",
+			"east": "canyon_view"
 		}
 	}
 }

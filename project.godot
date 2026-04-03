@@ -23,6 +23,7 @@ DeathManager="*res://scripts/autoload/death_manager.gd"
 AudioManager="*res://scripts/autoload/audio_manager.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 ThiefManager="*res://scripts/autoload/thief_manager.gd"
+HintManager="*res://scripts/autoload/hint_manager.gd"
 
 [display]
 

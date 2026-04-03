@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_reservoir_north"]
+[gd_scene load_steps=7 format=3 uid="uid://room_shore_cave"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
-vertices = PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)
+vertices = PackedVector2Array(60, 200, 580, 200, 580, 330, 60, 330)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(60, 200, 580, 200, 580, 330, 60, 330)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
@@ -15,29 +15,26 @@ size = Vector2(12, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
 size = Vector2(30, 140)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
-size = Vector2(200, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivory_torch"]
+size = Vector2(20, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
-size = Vector2(30, 140)
-
-[node name="ReservoirNorth" type="Node2D"]
+[node name="ShoreCave" type="Node2D"]
 script = ExtResource("1")
-room_id = "reservoir_north"
-room_name = "Reservoir North"
-surface_type = "dirt"
+room_id = "shore_cave"
+room_name = "Shore Cave"
+surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.3, 0.38, 0.28, 1)
+color = Color(0.2, 0.2, 0.24, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(320, 280)
+position = Vector2(320, 270)
 script = ExtResource("3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
@@ -56,31 +53,19 @@ hotspot_id = "exit_east"
 display_name = "East"
 hotspot_type = 1
 exit_direction = "east"
-look_text = "A path leads east toward the dam."
+look_text = "The cave opening leads back to the river."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
 shape = SubResource("RectangleShape2D_exit_e")
 
-[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 175)
+[node name="IvoryTorch" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(350, 260)
 script = ExtResource("2")
-hotspot_id = "exit_north"
-display_name = "North"
-hotspot_type = 1
-exit_direction = "north"
-look_text = "A path leads north along the reservoir."
+hotspot_id = "ivory_torch"
+display_name = "Ivory Torch"
+hotspot_type = 0
+item_id = "ivory_torch"
+look_text = "An ornamental torch carved entirely from ivory. Far too beautiful to actually burn."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
-shape = SubResource("RectangleShape2D_exit_n")
-
-[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(15, 270)
-script = ExtResource("2")
-hotspot_id = "exit_west"
-display_name = "West"
-hotspot_type = 1
-exit_direction = "west"
-look_text = "A path leads west along the shore toward the river."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
-shape = SubResource("RectangleShape2D_exit_w")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IvoryTorch"]
+shape = SubResource("RectangleShape2D_ivory_torch")

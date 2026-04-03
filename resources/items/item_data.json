@@ -272,5 +272,27 @@
 		"type": "treasure",
 		"value": 8,
 		"takeable": true
+	},
+	"shovel": {
+		"name": "Shovel",
+		"description": "A sturdy shovel. Good for digging, or for looking purposeful.",
+		"weight": 10,
+		"type": "tool",
+		"takeable": true
+	},
+	"ivory_torch": {
+		"name": "Ivory Torch",
+		"description": "An ornamental torch carved from a single piece of ivory. A masterwork of craftsmanship.",
+		"weight": 5,
+		"type": "treasure",
+		"value": 8,
+		"takeable": true
+	},
+	"rusty_key": {
+		"name": "Rusty Key",
+		"description": "A small, rusty key. It looks like it might open something... if it doesn't crumble first.",
+		"weight": 1,
+		"type": "tool",
+		"takeable": true
 	}
 }

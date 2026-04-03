@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://room_dam_base"]
+[gd_scene load_steps=9 format=3 uid="uid://room_sandy_beach"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -12,35 +12,35 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
 size = Vector2(30, 140)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
-size = Vector2(200, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pump"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shovel"]
 size = Vector2(20, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
-size = Vector2(30, 140)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sand"]
+size = Vector2(200, 20)
 
-[node name="DamBase" type="Node2D"]
+[node name="SandyBeach" type="Node2D"]
 script = ExtResource("1")
-room_id = "dam_base"
-room_name = "DamBase"
-surface_type = "stone"
+room_id = "sandy_beach"
+room_name = "Sandy Beach"
+surface_type = "dirt"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.4, 0.42, 0.45, 1)
+color = Color(0.5, 0.45, 0.35, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(320, 280)
+position = Vector2(320, 270)
 script = ExtResource("3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
@@ -52,6 +52,18 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
+[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 175)
+script = ExtResource("2")
+hotspot_id = "exit_north"
+display_name = "North"
+hotspot_type = 1
+exit_direction = "north"
+look_text = "The river stretches north toward the falls."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
+shape = SubResource("RectangleShape2D_exit_n")
+
 [node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(15, 270)
 script = ExtResource("2")
@@ -59,43 +71,30 @@ hotspot_id = "exit_west"
 display_name = "West"
 hotspot_type = 1
 exit_direction = "west"
-look_text = "A path leads west along the base of the dam."
+look_text = "A path leads west toward the base of the dam."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
 shape = SubResource("RectangleShape2D_exit_w")
 
-[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 345)
+[node name="Shovel" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(400, 290)
 script = ExtResource("2")
-hotspot_id = "exit_south"
-display_name = "South"
-hotspot_type = 1
-exit_direction = "south"
-look_text = "A trail leads south away from the dam."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
-shape = SubResource("RectangleShape2D_exit_s")
-
-[node name="AirPump" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(250, 290)
-script = ExtResource("2")
-hotspot_id = "air_pump"
-display_name = "Air Pump"
+hotspot_id = "shovel"
+display_name = "Shovel"
 hotspot_type = 0
-item_id = "air_pump"
-look_text = "A hand-operated air pump lies against the dam wall. The label reads 'FROBOZZ MAGIC AIR PUMP CO.'"
+item_id = "shovel"
+look_text = "A sturdy shovel, half-buried in the sand."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AirPump"]
-shape = SubResource("RectangleShape2D_pump")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shovel"]
+shape = SubResource("RectangleShape2D_shovel")
 
-[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(625, 270)
+[node name="Sand" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(300, 310)
 script = ExtResource("2")
-hotspot_id = "exit_east"
-display_name = "East"
-hotspot_type = 1
-exit_direction = "east"
-look_text = "A sandy path leads east along the river."
+hotspot_id = "sand"
+display_name = "Sandy Ground"
+hotspot_type = 4
+look_text = "Fine white sand stretches along the riverbank. It looks like no one has walked here in centuries."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
-shape = SubResource("RectangleShape2D_exit_e")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sand"]
+shape = SubResource("RectangleShape2D_sand")

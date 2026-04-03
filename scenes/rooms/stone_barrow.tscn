@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_stone_barrow"]
+[gd_scene load_steps=10 format=3 uid="uid://room_stone_barrow"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -17,6 +17,9 @@ size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_down"]
 size = Vector2(100, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
+size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_barrow_entrance"]
 size = Vector2(60, 40)
@@ -71,6 +74,18 @@ look_text = "A path leads east through the trees."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
 shape = SubResource("RectangleShape2D_exit_e")
+
+[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(15, 270)
+script = ExtResource("2")
+hotspot_id = "exit_west"
+display_name = "West"
+hotspot_type = 1
+exit_direction = "west"
+look_text = "An overgrown path leads west through thorny bushes."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
+shape = SubResource("RectangleShape2D_exit_w")
 
 [node name="ExitDown" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(480, 345)
