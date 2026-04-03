@@ -34,6 +34,7 @@ room_name = "Kitchen"
 surface_type = "wood"
 
 [node name="Background" type="ColorRect" parent="."]
+mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.55, 0.4, 0.25, 1)

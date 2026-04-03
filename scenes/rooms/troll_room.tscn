@@ -28,6 +28,7 @@ room_name = "The Troll Room"
 surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
+mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.22, 0.2, 0.18, 1)
