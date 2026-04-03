@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://room_loud_room"]
+
+[ext_resource type="Script" path="res://scripts/rooms/loud_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
+vertices = PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platinum"]
+size = Vector2(25, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
+size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_up"]
+size = Vector2(100, 30)
+
+[node name="LoudRoom" type="Node2D"]
+script = ExtResource("1")
+room_id = "loud_room"
+room_name = "Loud Room"
+surface_type = "stone"
+
+[node name="Background" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+target_desired_distance = 4.0
+path_desired_distance = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_player_col")
+
+[node name="PlatinumBar" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(450, 250)
+script = ExtResource("2")
+hotspot_id = "platinum_bar"
+display_name = "Platinum Bar"
+hotspot_type = 0
+item_id = "platinum_bar"
+look_text = "A bar of pure platinum sits on a ledge, trembling with the room's vibrations."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatinumBar"]
+shape = SubResource("RectangleShape2D_platinum")
+
+[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(625, 270)
+script = ExtResource("2")
+hotspot_id = "exit_east"
+display_name = "East"
+hotspot_type = 1
+exit_direction = "east"
+look_text = "A passage leads east."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
+shape = SubResource("RectangleShape2D_exit_e")
+
+[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(15, 270)
+script = ExtResource("2")
+hotspot_id = "exit_west"
+display_name = "West"
+hotspot_type = 1
+exit_direction = "west"
+look_text = "A passage leads west."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
+shape = SubResource("RectangleShape2D_exit_w")
+
+[node name="ExitUp" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(560, 175)
+script = ExtResource("2")
+hotspot_id = "exit_up"
+display_name = "Up"
+hotspot_type = 1
+exit_direction = "up"
+look_text = "A steep passage leads upward."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitUp"]
+shape = SubResource("RectangleShape2D_exit_up")

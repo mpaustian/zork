@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_hades_entrance"]
+[gd_scene load_steps=10 format=3 uid="uid://room_hades_entrance"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -17,6 +17,9 @@ size = Vector2(100, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
 size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_candles"]
+size = Vector2(20, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spirit_gate"]
 size = Vector2(80, 30)
@@ -48,6 +51,18 @@ path_desired_distance = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
+
+[node name="Candles" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(250, 300)
+script = ExtResource("2")
+hotspot_id = "candles"
+display_name = "Candles"
+hotspot_type = 0
+item_id = "candles"
+look_text = "Three ivory candles, arranged in a neat row on a stone shelf. They seem untouched by the passage of time."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Candles"]
+shape = SubResource("RectangleShape2D_candles")
 
 [node name="ExitUp" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(560, 175)

@@ -1,34 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://room_treasure_room"]
+[gd_scene load_steps=9 format=3 uid="uid://room_river_bank"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
-vertices = PackedVector2Array(40, 180, 600, 180, 600, 340, 40, 340)
+vertices = PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(40, 180, 600, 180, 600, 340, 40, 340)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
-size = Vector2(200, 30)
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sceptre"]
-size = Vector2(20, 25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
+size = Vector2(30, 140)
 
-[node name="TreasureRoom" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
+size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_raft_deflated"]
+size = Vector2(40, 30)
+
+[node name="RiverBank" type="Node2D"]
 script = ExtResource("1")
-room_id = "treasure_room"
-room_name = "Treasure Room"
-surface_type = "stone"
+room_id = "river_bank"
+room_name = "River Bank"
+surface_type = "dirt"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.4, 0.35, 0.2, 1)
+color = Color(0.3, 0.35, 0.25, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -46,6 +49,18 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
+[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(625, 270)
+script = ExtResource("2")
+hotspot_id = "exit_east"
+display_name = "East"
+hotspot_type = 1
+exit_direction = "east"
+look_text = "A path leads east to the stream view."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
+shape = SubResource("RectangleShape2D_exit_e")
+
 [node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 345)
 script = ExtResource("2")
@@ -53,19 +68,18 @@ hotspot_id = "exit_south"
 display_name = "South"
 hotspot_type = 1
 exit_direction = "south"
-look_text = "A passage leads south."
+look_text = "A trail leads south toward the falls."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
 shape = SubResource("RectangleShape2D_exit_s")
 
-[node name="Sceptre" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(350, 260)
+[node name="RaftDeflated" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(350, 280)
 script = ExtResource("2")
-hotspot_id = "sceptre"
-display_name = "Sceptre"
-hotspot_type = 0
-item_id = "sceptre"
-look_text = "A magnificent sceptre adorned with jewels. It emanates a warm, golden glow that seems to intensify near water."
+hotspot_id = "raft_deflated"
+display_name = "Deflated Raft"
+hotspot_type = 3
+look_text = "A deflated rubber raft lies on the bank. It has a valve for inflation."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sceptre"]
-shape = SubResource("RectangleShape2D_sceptre")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RaftDeflated"]
+shape = SubResource("RectangleShape2D_raft_deflated")

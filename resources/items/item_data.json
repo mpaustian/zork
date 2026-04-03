@@ -187,5 +187,35 @@
 		"weight": 3,
 		"type": "weapon",
 		"takeable": true
+	},
+	"sceptre": {
+		"name": "Sceptre",
+		"description": "A jeweled sceptre of ancient make. It pulses with a warm, golden light.",
+		"weight": 5,
+		"type": "treasure",
+		"value": 6,
+		"takeable": true
+	},
+	"pot_of_gold": {
+		"name": "Pot of Gold",
+		"description": "A small pot overflowing with gold coins. It's heavier than it looks.",
+		"weight": 15,
+		"type": "treasure",
+		"value": 10,
+		"takeable": true
+	},
+	"raft": {
+		"name": "Inflated Raft",
+		"description": "A rubber raft, now inflated and ready for river travel.",
+		"weight": 15,
+		"type": "tool",
+		"takeable": true
+	},
+	"air_pump": {
+		"name": "Air Pump",
+		"description": "A hand-operated air pump. Perfect for inflating things.",
+		"weight": 8,
+		"type": "tool",
+		"takeable": true
 	}
 }

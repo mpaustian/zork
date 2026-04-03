@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://room_temple"]
+[gd_scene load_steps=11 format=3 uid="uid://room_temple"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -20,6 +20,9 @@ size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
 size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bell"]
+size = Vector2(20, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_temple_carvings"]
 size = Vector2(60, 40)
@@ -51,6 +54,18 @@ path_desired_distance = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
+
+[node name="Bell" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(200, 280)
+script = ExtResource("2")
+hotspot_id = "bell"
+display_name = "Bell"
+hotspot_type = 0
+item_id = "bell"
+look_text = "A tarnished brass bell sits on a stone pedestal. Despite its age, it seems to hum faintly."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bell"]
+shape = SubResource("RectangleShape2D_bell")
 
 [node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 175)

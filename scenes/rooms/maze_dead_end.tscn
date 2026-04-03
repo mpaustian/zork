@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://room_maze_dead_end"]
+[gd_scene load_steps=6 format=3 uid="uid://room_maze_dead_end"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -11,6 +11,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(60, 200, 580, 200, 580,
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
 size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bag"]
+size = Vector2(20, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
@@ -42,6 +45,18 @@ path_desired_distance = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
+
+[node name="BagOfCoins" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(400, 300)
+script = ExtResource("2")
+hotspot_id = "bag_of_coins"
+display_name = "Bag of Coins"
+hotspot_type = 0
+item_id = "bag_of_coins"
+look_text = "A leather bag, bulging with coins. Someone dropped it here in a hurry."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BagOfCoins"]
+shape = SubResource("RectangleShape2D_bag")
 
 [node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 335)

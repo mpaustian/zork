@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://room_west_of_house"]
+[gd_scene load_steps=6 format=3 uid="uid://room_west_of_house"]
 
 [ext_resource type="Script" path="res://scripts/rooms/west_of_house.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -23,6 +23,9 @@ size = Vector2(200, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
 size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leaflet"]
+size = Vector2(15, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
@@ -66,6 +69,19 @@ walk_to_point = Vector2(330, 270)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mailbox"]
 shape = SubResource("RectangleShape2D_mailbox")
+
+[node name="Leaflet" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(360, 270)
+script = ExtResource("2")
+hotspot_id = "leaflet"
+display_name = "Leaflet"
+hotspot_type = 0
+item_id = "leaflet"
+look_text = "A small leaflet sticks out of the mailbox."
+walk_to_point = Vector2(340, 275)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leaflet"]
+shape = SubResource("RectangleShape2D_leaflet")
 
 [node name="Window" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(500, 160)

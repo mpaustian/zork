@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://room_round_room"]
+[gd_scene load_steps=11 format=3 uid="uid://room_round_room"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -20,6 +20,9 @@ size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
 size = Vector2(30, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_up"]
+size = Vector2(100, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
@@ -99,3 +102,15 @@ look_text = "A passage leads west."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
 shape = SubResource("RectangleShape2D_exit_w")
+
+[node name="ExitUp" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(560, 175)
+script = ExtResource("2")
+hotspot_id = "exit_up"
+display_name = "Up"
+hotspot_type = 1
+exit_direction = "up"
+look_text = "A stairway leads upward into darkness."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitUp"]
+shape = SubResource("RectangleShape2D_exit_up")

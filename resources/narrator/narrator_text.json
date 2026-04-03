@@ -158,5 +158,31 @@
 	"look_coal": "A large, dense lump of coal. In another life, this might have been a diamond. In this life, it's a lump of coal. We don't always get what we want.",
 	"look_stiletto": "The thief's stiletto — a thin, wickedly sharp blade designed for precision rather than power. It's the kind of weapon that says 'I could hurt you, but I'd rather you didn't see it coming.'",
 
-	"death_explosion": "The gas ignites. For a brief, glorious moment, you are the brightest thing in the Great Underground Empire. Then you are the most scattered."
+	"death_explosion": "The gas ignites. For a brief, glorious moment, you are the brightest thing in the Great Underground Empire. Then you are the most scattered.",
+
+	"room_reservoir_north_first": "The northern shore of the reservoir stretches before you. The water is dark and still, with an oily sheen. The dam is visible to the east.",
+	"room_reservoir_north": "The reservoir's north shore. The water hasn't moved.",
+	"room_stream_view_first": "You stand overlooking a gentle stream that feeds the reservoir. The sound of running water is peaceful — a rare commodity underground. Trees line the banks.",
+	"room_stream_view": "Stream view. The water babbles on, oblivious to your quest.",
+	"room_river_bank_first": "You are on the bank of a wide underground river. The current is strong and dark. A deflated rubber raft lies on the shore, looking rather sorry for itself.",
+	"room_river_bank": "The river bank. The raft awaits, deflated and judgmental.",
+	"room_aragain_falls_first": "You stand at the edge of Aragain Falls, where the river plunges into a vast underground chasm. The roar is immense. Mist billows upward, and in the spray, a magnificent rainbow arcs across the void. It's beautiful. It's also extremely non-solid.",
+	"room_aragain_falls": "Aragain Falls. The rainbow shimmers in the mist.",
+	"room_rainbow_room_first": "You are standing on a rainbow. Let that sink in. Beneath your feet, bands of color shift and pulse with gentle warmth. The view from up here is extraordinary — the falls below, the cavern stretching in all directions.",
+	"room_rainbow_room": "On the rainbow. Still magical. Still improbable.",
+	"room_end_of_rainbow_first": "You have reached the end of the rainbow. And yes, there is a pot of gold here. The universe, it seems, has a sense of humor after all.",
+	"room_end_of_rainbow": "The end of the rainbow. The pot of gold gleams patiently.",
+	"room_mirror_room_north_first": "This room is dominated by a massive mirror that covers the entire north wall. Your reflection stares back at you, but there's something unsettling about it — the movements are just slightly off, as if your reflection is thinking about something you're not.",
+	"room_mirror_room_north": "The mirror room. Your reflection looks tired.",
+	"room_mirror_room_south_first": "Another mirror room, this one with the mirror on the south wall. The effect is disorienting — mirrors reflecting mirrors, creating infinite corridors of increasingly worried-looking adventurers.",
+	"room_mirror_room_south": "The southern mirror room. Infinite yous, infinite problems.",
+	"room_gallery_first": "This is an art gallery, though 'gallery' is generous. The walls are lined with empty frames, save for one that holds a painting of extraordinary beauty — a pastoral scene that seems to shift subtly when you're not looking directly at it.",
+	"room_gallery": "The gallery. The painting watches you watching it.",
+	"room_studio_first": "This appears to have been an artist's studio. An easel stands in the center, bearing an empty canvas. Dried paint cakes every surface. Brushes lie scattered as if thrown down in frustration — or terror.",
+	"room_studio": "The studio. The empty canvas somehow feels accusatory.",
+	"look_sceptre": "A magnificent sceptre adorned with jewels. It emanates a warm, golden glow that seems to intensify near water.",
+	"look_pot_of_gold": "A pot brimming with gold coins, each one stamped with the seal of the Great Underground Empire. It's the kind of treasure that makes the whole adventure worthwhile.",
+	"look_painting_room": "A painting of remarkable beauty. The pastoral scene seems almost alive — the trees sway, the water sparkles. You could stare at it for hours. The frame alone is probably worth a fortune.",
+	"look_raft_deflated": "A rubber raft, currently flat as a pancake. There's a valve on one side for inflation. You'd need some kind of pump.",
+	"look_air_pump": "A sturdy hand-operated air pump. The label reads 'FROBOZZ MAGIC AIR PUMP CO.' Guaranteed to inflate anything, or your zorkmids back."
 }

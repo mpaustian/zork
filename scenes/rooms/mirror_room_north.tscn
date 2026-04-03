@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://room_mirror_room_north"]
+
+[ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1"]
+vertices = PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620, 340, 20, 340)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_down"]
+size = Vector2(100, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mirror_north"]
+size = Vector2(60, 80)
+
+[node name="MirrorRoomNorth" type="Node2D"]
+script = ExtResource("1")
+room_id = "mirror_room_north"
+room_name = "Mirror Room"
+surface_type = "stone"
+
+[node name="Background" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(320, 280)
+script = ExtResource("3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+target_desired_distance = 4.0
+path_desired_distance = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_player_col")
+
+[node name="ExitDown" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(480, 345)
+script = ExtResource("2")
+hotspot_id = "exit_down"
+display_name = "Down"
+hotspot_type = 1
+exit_direction = "down"
+look_text = "A stairway leads down to the round room."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDown"]
+shape = SubResource("RectangleShape2D_exit_down")
+
+[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 175)
+script = ExtResource("2")
+hotspot_id = "exit_north"
+display_name = "North"
+hotspot_type = 1
+exit_direction = "north"
+look_text = "The mirror seems to show a passage to the north."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
+shape = SubResource("RectangleShape2D_exit_n")
+
+[node name="MirrorNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 220)
+script = ExtResource("2")
+hotspot_id = "mirror_north"
+display_name = "Mirror"
+hotspot_type = 4
+look_text = "A huge mirror stretches from floor to ceiling. Your reflection stares back, slightly delayed. The room to the north is visible through — or in — the mirror."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MirrorNorth"]
+shape = SubResource("RectangleShape2D_mirror_north")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://room_dam_lobby"]
+[gd_scene load_steps=12 format=3 uid="uid://room_dam_lobby"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -20,6 +20,12 @@ size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
 size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_book"]
+size = Vector2(20, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guide"]
+size = Vector2(15, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guidebook_rack"]
 size = Vector2(30, 40)
@@ -62,6 +68,30 @@ look_text = "A rack near the entrance holds dusty guidebooks."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GuidebookRack"]
 shape = SubResource("RectangleShape2D_guidebook_rack")
+
+[node name="PrayerBook" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(220, 280)
+script = ExtResource("2")
+hotspot_id = "prayer_book"
+display_name = "Prayer Book"
+hotspot_type = 0
+item_id = "prayer_book"
+look_text = "An ancient prayer book, bound in cracked leather. It seems out of place among the tourist guidebooks."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PrayerBook"]
+shape = SubResource("RectangleShape2D_book")
+
+[node name="Guidebook" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(200, 270)
+script = ExtResource("2")
+hotspot_id = "guidebook"
+display_name = "Guidebook"
+hotspot_type = 0
+item_id = "guidebook"
+look_text = "A dusty guidebook about Flood Control Dam #3."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guidebook"]
+shape = SubResource("RectangleShape2D_guide")
 
 [node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 175)

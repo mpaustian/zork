@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://room_dam"]
+[gd_scene load_steps=9 format=3 uid="uid://room_gallery"]
 
-[ext_resource type="Script" path="res://scripts/rooms/dam.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
 
@@ -12,32 +12,26 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
-size = Vector2(200, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
 size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
 size = Vector2(200, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
-size = Vector2(30, 140)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_painting"]
+size = Vector2(40, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dam_controls"]
-size = Vector2(80, 60)
-
-[node name="FloodControlDam" type="Node2D"]
+[node name="Gallery" type="Node2D"]
 script = ExtResource("1")
-room_id = "dam"
-room_name = "Flood Control Dam #3"
+room_id = "gallery"
+room_name = "Gallery"
 surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.5, 0.52, 0.55, 1)
+color = Color(0.4, 0.35, 0.32, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -55,29 +49,6 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
-[node name="DamControls" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 240)
-script = ExtResource("2")
-hotspot_id = "dam_controls"
-display_name = "Dam Controls"
-hotspot_type = 3
-look_text = "A massive control panel with rusted levers and faded labels. The words 'FLOOD CONTROL DAM #3' are stamped into a metal plate."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamControls"]
-shape = SubResource("RectangleShape2D_dam_controls")
-
-[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 345)
-script = ExtResource("2")
-hotspot_id = "exit_south"
-display_name = "South"
-hotspot_type = 1
-exit_direction = "south"
-look_text = "A path leads south to the dam lobby."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
-shape = SubResource("RectangleShape2D_exit_s")
-
 [node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(625, 270)
 script = ExtResource("2")
@@ -85,7 +56,7 @@ hotspot_id = "exit_east"
 display_name = "East"
 hotspot_type = 1
 exit_direction = "east"
-look_text = "A path leads east along the top of the dam."
+look_text = "A passage leads east to the mirror room."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
 shape = SubResource("RectangleShape2D_exit_e")
@@ -97,19 +68,19 @@ hotspot_id = "exit_north"
 display_name = "North"
 hotspot_type = 1
 exit_direction = "north"
-look_text = "A path leads north across the dam."
+look_text = "A doorway leads north to the studio."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
 shape = SubResource("RectangleShape2D_exit_n")
 
-[node name="ExitWest" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(15, 270)
+[node name="Painting" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(400, 220)
 script = ExtResource("2")
-hotspot_id = "exit_west"
-display_name = "West"
-hotspot_type = 1
-exit_direction = "west"
-look_text = "A path leads west along the reservoir's north shore."
+hotspot_id = "painting"
+display_name = "Painting"
+hotspot_type = 0
+item_id = "painting"
+look_text = "A masterpiece of incredible detail depicting a pastoral scene. It seems to glow with its own inner light."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
-shape = SubResource("RectangleShape2D_exit_w")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Painting"]
+shape = SubResource("RectangleShape2D_painting")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://room_reservoir_south"]
+[gd_scene load_steps=8 format=3 uid="uid://room_end_of_rainbow"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -12,23 +12,23 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_trident"]
-size = Vector2(20, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
 size = Vector2(200, 30)
 
-[node name="ReservoirSouth" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pot_of_gold"]
+size = Vector2(25, 25)
+
+[node name="EndOfRainbow" type="Node2D"]
 script = ExtResource("1")
-room_id = "reservoir_south"
-room_name = "Reservoir South"
-surface_type = "dirt"
+room_id = "end_of_rainbow"
+room_name = "End of Rainbow"
+surface_type = "grass"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.35, 0.4, 0.3, 1)
+color = Color(0.3, 0.45, 0.25, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -46,26 +46,26 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
-[node name="CrystalTrident" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(400, 280)
+[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 175)
 script = ExtResource("2")
-hotspot_id = "crystal_trident"
-display_name = "Crystal Trident"
-hotspot_type = 0
-item_id = "crystal_trident"
-look_text = "A magnificent trident carved from a single crystal, half-buried in the mud at the water's edge."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrystalTrident"]
-shape = SubResource("RectangleShape2D_trident")
-
-[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 345)
-script = ExtResource("2")
-hotspot_id = "exit_south"
-display_name = "South"
+hotspot_id = "exit_north"
+display_name = "North"
 hotspot_type = 1
-exit_direction = "south"
-look_text = "A path leads south to the dam."
+exit_direction = "north"
+look_text = "The rainbow stretches north."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
-shape = SubResource("RectangleShape2D_exit_s")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
+shape = SubResource("RectangleShape2D_exit_n")
+
+[node name="PotOfGold" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(300, 280)
+script = ExtResource("2")
+hotspot_id = "pot_of_gold"
+display_name = "Pot of Gold"
+hotspot_type = 0
+item_id = "pot_of_gold"
+look_text = "A pot of gold sits at the end of the rainbow. Of course it does."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PotOfGold"]
+shape = SubResource("RectangleShape2D_pot_of_gold")

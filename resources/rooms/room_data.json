@@ -159,7 +159,8 @@
 			"south": "maze_3",
 			"north": "cyclops_room",
 			"east": "narrow_passage",
-			"west": "loud_room"
+			"west": "loud_room",
+			"up": "mirror_room_north"
 		}
 	},
 	"cyclops_room": {
@@ -311,7 +312,8 @@
 		"exits": {
 			"south": "dam_lobby",
 			"east": "dam_base",
-			"north": "reservoir_south"
+			"north": "reservoir_south",
+			"west": "reservoir_north"
 		}
 	},
 	"dam_lobby": {
@@ -450,6 +452,102 @@
 		"surface": "stone",
 		"exits": {
 			"west": "gas_room"
+		}
+	},
+	"reservoir_north": {
+		"name": "Reservoir North",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"east": "dam",
+			"north": "stream_view"
+		}
+	},
+	"stream_view": {
+		"name": "Stream View",
+		"dark": false,
+		"surface": "grass",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"south": "reservoir_north",
+			"west": "river_bank"
+		}
+	},
+	"river_bank": {
+		"name": "River Bank",
+		"dark": false,
+		"surface": "dirt",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"east": "stream_view",
+			"south": "aragain_falls"
+		}
+	},
+	"aragain_falls": {
+		"name": "Aragain Falls",
+		"dark": false,
+		"surface": "stone",
+		"ambient_sound": "river_rush",
+		"exits": {
+			"north": "river_bank",
+			"west": {
+				"target": "rainbow_room",
+				"requires_flag": "rainbow_solid",
+				"blocked_message": "The rainbow is beautiful, but it's made of light. You can't walk on light. Can you?"
+			}
+		}
+	},
+	"rainbow_room": {
+		"name": "On the Rainbow",
+		"dark": false,
+		"surface": "stone",
+		"exits": {
+			"east": "aragain_falls",
+			"south": "end_of_rainbow"
+		}
+	},
+	"end_of_rainbow": {
+		"name": "End of Rainbow",
+		"dark": false,
+		"surface": "grass",
+		"exits": {
+			"north": "rainbow_room"
+		}
+	},
+	"mirror_room_north": {
+		"name": "Mirror Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"down": "round_room",
+			"north": "mirror_room_south"
+		}
+	},
+	"mirror_room_south": {
+		"name": "Mirror Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"south": "mirror_room_north",
+			"west": "gallery"
+		}
+	},
+	"gallery": {
+		"name": "Gallery",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"east": "mirror_room_south",
+			"north": "studio"
+		}
+	},
+	"studio": {
+		"name": "Studio",
+		"dark": true,
+		"surface": "wood",
+		"exits": {
+			"south": "gallery"
 		}
 	}
 }

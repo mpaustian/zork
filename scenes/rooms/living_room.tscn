@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://room_living_room"]
+[gd_scene load_steps=6 format=3 uid="uid://room_living_room"]
 
 [ext_resource type="Script" path="res://scripts/rooms/living_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -17,6 +17,9 @@ size = Vector2(100, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trap"]
 size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sword"]
+size = Vector2(20, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
 size = Vector2(30, 140)
@@ -63,6 +66,19 @@ walk_to_point = Vector2(150, 230)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrophyCase"]
 shape = SubResource("RectangleShape2D_trophy")
+
+[node name="ElvishSword" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(150, 220)
+script = ExtResource("2")
+hotspot_id = "elvish_sword"
+display_name = "Elvish Sword"
+hotspot_type = 0
+item_id = "elvish_sword"
+look_text = "A beautiful sword of elvish workmanship hangs on the wall above the trophy case. Its blade glows with a faint blue light."
+walk_to_point = Vector2(150, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElvishSword"]
+shape = SubResource("RectangleShape2D_sword")
 
 [node name="OrientalRug" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(350, 290)
