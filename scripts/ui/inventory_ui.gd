@@ -129,7 +129,20 @@ func _end_drag() -> void:
 
 
 func _show_item_context(item_id: String) -> void:
-	# Show look/drop options
+	# Special use-on-self actions for certain items
+	match item_id:
+		"brass_lantern":
+			LightingManager.toggle_lamp()
+			_refresh()
+			return
+		"torch":
+			if not LightingManager.torch_lit:
+				LightingManager.light_torch()
+				_refresh()
+			else:
+				NarratorManager.narrate_raw("The torch burns with an eternal flame. It cannot be extinguished.")
+			return
+	# Default: show look text
 	NarratorManager.narrate_look(item_id)
 
 
@@ -139,7 +152,15 @@ func _on_weight_changed(current: int, max_weight: int) -> void:
 
 
 func _get_item_color(item_id: String) -> Color:
-	# Simple color coding by item type for placeholder art
+	# Lantern shows on/off state
+	if item_id == "brass_lantern":
+		if LightingManager.lamp_on:
+			return Color(1.0, 0.95, 0.4)  # Bright yellow when on
+		else:
+			return Color(0.6, 0.5, 0.2)  # Dim when off
+	if item_id == "torch":
+		return Color(1.0, 0.6, 0.2)  # Orange glow
+
 	var info := InventoryManager.get_item_info(item_id)
 	var item_type: String = info.get("type", "misc")
 	match item_type:

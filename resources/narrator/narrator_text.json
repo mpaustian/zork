@@ -227,5 +227,21 @@
 	"room_mine_tunnel": "The mine tunnel. The rails lead nowhere useful. The supports lead nowhere reassuring.",
 
 	"endgame_victory": "The last treasure clicks into place. The trophy case shimmers with an inner light, and for the first time, the narrator is speechless. Almost. You have done it. Every treasure recovered. Every puzzle solved. Every death survived (eventually). You are the Greatest Adventurer the Great Underground Empire has ever known. The narrator tips his metaphorical hat. Well played.",
-	"endgame_rank": "Your final rank: Greatest Adventurer. The Great Underground Empire salutes you."
+	"endgame_rank": "Your final rank: Greatest Adventurer. The Great Underground Empire salutes you.",
+
+	"use_fail_generic": "That doesn't seem to work. The universe appreciates your creativity, though.",
+	"use_fail_eat": "You can't eat that. Well, you could try, but the narrator recommends against it.",
+	"drop_item": "Dropped.",
+	"drop_fail": "You can't drop something you don't have.",
+	"attack_fail": "Violence isn't the answer here. It rarely is, despite what the troll might suggest.",
+	"talk_fail": "There's no response. Perhaps it's shy. Or, more likely, it's an inanimate object.",
+	"look_self": "You are a slightly disheveled adventurer. Your clothes are practical, your pockets are deep, and your survival instincts are questionable at best.",
+	"look_nothing": "You see nothing special about that.",
+	"hint_dark_room": "It's very dark here. If you have a light source, try right-clicking it in your inventory to turn it on.",
+	"hint_first_underground": "The underground awaits! Remember: your lamp has limited fuel. Conserve it when you can, and keep an eye out for the torch.",
+	"mailbox_opened": "Opening the small mailbox reveals a leaflet.",
+	"look_house_exterior": "The white house stands silently, its front door boarded shut. It has the look of a house that has seen things. Things it would rather forget.",
+	"look_forest_generic": "Trees. More trees. The forest extends in every direction, ancient and indifferent to your passing.",
+	"look_underground_walls": "The walls are rough-hewn stone, damp to the touch. Occasional chisel marks suggest this passage was carved rather than natural.",
+	"look_water_generic": "The water is dark and cold. You dip a finger in experimentally. Yep. Dark and cold. Mystery solved."
 }
