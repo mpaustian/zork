@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_dome_room"]
+[gd_scene load_steps=10 format=3 uid="uid://room_dome_room"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -20,6 +20,9 @@ size = Vector2(100, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dome_ceiling"]
 size = Vector2(100, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_silver_chalice"]
+size = Vector2(20, 25)
 
 [node name="DomeRoom" type="Node2D"]
 script = ExtResource("1")
@@ -59,6 +62,18 @@ look_text = "The ceiling arches into a perfect dome high above, studded with cry
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DomeCeiling"]
 shape = SubResource("RectangleShape2D_dome_ceiling")
+
+[node name="SilverChalice" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(250, 280)
+script = ExtResource("2")
+hotspot_id = "silver_chalice"
+display_name = "Silver Chalice"
+hotspot_type = 0
+item_id = "silver_chalice"
+look_text = "A silver chalice sits in an alcove, catching light from the crystal dome above."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SilverChalice"]
+shape = SubResource("RectangleShape2D_silver_chalice")
 
 [node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 175)

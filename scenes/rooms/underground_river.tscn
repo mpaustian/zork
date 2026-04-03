@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_underground_river"]
+[gd_scene load_steps=10 format=3 uid="uid://room_underground_river"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -20,6 +20,9 @@ size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_river"]
 size = Vector2(200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruby"]
+size = Vector2(15, 15)
 
 [node name="UndergroundRiver" type="Node2D"]
 script = ExtResource("1")
@@ -59,6 +62,18 @@ look_text = "A dark river flows swiftly past, its surface black and glassy. The 
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="River"]
 shape = SubResource("RectangleShape2D_river")
+
+[node name="Ruby" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(350, 260)
+script = ExtResource("2")
+hotspot_id = "ruby"
+display_name = "Ruby"
+hotspot_type = 0
+item_id = "ruby"
+look_text = "A deep red ruby lies on a rock at the water's edge, glinting like a tiny ember."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruby"]
+shape = SubResource("RectangleShape2D_ruby")
 
 [node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 175)

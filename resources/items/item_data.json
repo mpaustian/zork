@@ -224,5 +224,53 @@
 		"weight": 2,
 		"type": "misc",
 		"takeable": true
+	},
+	"jade_figurine": {
+		"name": "Jade Figurine",
+		"description": "A delicate jade figurine of a serpent, its scales carved in exquisite detail.",
+		"weight": 5,
+		"type": "treasure",
+		"value": 8,
+		"takeable": true
+	},
+	"silver_chalice": {
+		"name": "Silver Chalice",
+		"description": "A silver chalice encrusted with rubies. It was clearly meant for someone important.",
+		"weight": 8,
+		"type": "treasure",
+		"value": 10,
+		"takeable": true
+	},
+	"diamond": {
+		"name": "Enormous Diamond",
+		"description": "A diamond the size of a plum. It catches light from impossible angles.",
+		"weight": 3,
+		"type": "treasure",
+		"value": 12,
+		"takeable": true
+	},
+	"ancient_map": {
+		"name": "Ancient Map",
+		"description": "A beautifully illuminated map of the Great Underground Empire. Worth a fortune to collectors.",
+		"weight": 2,
+		"type": "treasure",
+		"value": 8,
+		"takeable": true
+	},
+	"ruby": {
+		"name": "Ruby",
+		"description": "A deep red ruby that seems to glow with an inner fire.",
+		"weight": 3,
+		"type": "treasure",
+		"value": 8,
+		"takeable": true
+	},
+	"sapphire_bracelet": {
+		"name": "Sapphire Bracelet",
+		"description": "A bracelet set with sapphires of impossible blue. It was made for a wrist smaller than yours.",
+		"weight": 3,
+		"type": "treasure",
+		"value": 8,
+		"takeable": true
 	}
 }

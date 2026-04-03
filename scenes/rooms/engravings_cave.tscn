@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://room_engravings_cave"]
+[gd_scene load_steps=11 format=3 uid="uid://room_engravings_cave"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -23,6 +23,9 @@ size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_engravings"]
 size = Vector2(80, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jade_figurine"]
+size = Vector2(20, 20)
 
 [node name="EngravingsCave" type="Node2D"]
 script = ExtResource("1")
@@ -62,6 +65,18 @@ look_text = "Ancient engravings cover every surface — maps, warnings, and what
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Engravings"]
 shape = SubResource("RectangleShape2D_engravings")
+
+[node name="JadeFigurine" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(450, 290)
+script = ExtResource("2")
+hotspot_id = "jade_figurine"
+display_name = "Jade Figurine"
+hotspot_type = 0
+item_id = "jade_figurine"
+look_text = "A jade figurine of a serpent, half-hidden among the carved symbols on the wall."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JadeFigurine"]
+shape = SubResource("RectangleShape2D_jade_figurine")
 
 [node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(320, 175)

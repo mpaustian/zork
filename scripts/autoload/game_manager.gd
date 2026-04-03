@@ -8,17 +8,17 @@ signal game_over(won: bool)
 
 enum GameState { PLAYING, PAUSED, DEATH_SCENE, COMBAT, MENU }
 
-const MAX_SCORE := 150
+const MAX_SCORE := 200
 const RANKS := {
 	0: "Beginner",
-	15: "Amateur Adventurer",
-	30: "Novice Adventurer",
-	50: "Junior Adventurer",
-	75: "Seasoned Adventurer",
-	100: "Senior Adventurer",
-	120: "Expert Adventurer",
-	135: "Master Adventurer",
-	150: "Greatest Adventurer",
+	20: "Amateur Adventurer",
+	40: "Novice Adventurer",
+	70: "Junior Adventurer",
+	100: "Seasoned Adventurer",
+	130: "Senior Adventurer",
+	160: "Expert Adventurer",
+	180: "Master Adventurer",
+	200: "Greatest Adventurer",
 }
 
 var state: GameState = GameState.PLAYING

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_crypt"]
+[gd_scene load_steps=10 format=3 uid="uid://room_crypt"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -20,6 +20,9 @@ size = Vector2(200, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sarcophagus"]
 size = Vector2(60, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_diamond"]
+size = Vector2(15, 15)
 
 [node name="Crypt" type="Node2D"]
 script = ExtResource("1")
@@ -59,6 +62,18 @@ look_text = "A stone sarcophagus lies in the center of the room, its lid slightl
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sarcophagus"]
 shape = SubResource("RectangleShape2D_sarcophagus")
+
+[node name="Diamond" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(400, 300)
+script = ExtResource("2")
+hotspot_id = "diamond"
+display_name = "Enormous Diamond"
+hotspot_type = 0
+item_id = "diamond"
+look_text = "Something sparkles among the dust. An enormous diamond, seemingly placed here as an offering."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Diamond"]
+shape = SubResource("RectangleShape2D_diamond")
 
 [node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(625, 270)

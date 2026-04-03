@@ -189,6 +189,18 @@
 	"look_odysseus_scroll": "The scroll tells the tale of Odysseus, who defeated the Cyclops Polyphemus not through strength but through cunning. 'Nobody is my name,' he told the beast. The Cyclops, it seems, was not the brightest creature. One-eyed and one-brained, as the saying goes.",
 	"look_air_pump_room": "A sturdy air pump with a Frobozz Magic logo. It could inflate just about anything — rafts, balloons, egos.",
 
+	"look_jade_figurine": "A jade figurine of a serpent, each scale individually carved. The craftsmanship is extraordinary — this must be thousands of years old.",
+	"look_silver_chalice": "A silver chalice studded with rubies. The interior still gleams, untarnished by time. Whatever this was used for, it was important.",
+	"look_diamond": "An enormous diamond that refracts light into a thousand tiny rainbows. You could retire on this. You could retire several times on this.",
+	"look_ancient_map": "A beautifully illuminated map showing the full extent of the Great Underground Empire. It's both a treasure and genuinely useful — if you can read the ancient notation.",
+	"look_ruby": "A ruby of extraordinary color and clarity. It seems to pulse with a faint inner warmth, as if it remembers the volcanic fires that created it.",
+	"look_sapphire_bracelet": "A bracelet of platinum and sapphires. The gems are the deep blue of a midnight sky. It's the kind of jewelry that starts wars.",
+
+	"grue_warning_1": "It is pitch black. You are likely to be eaten by a grue.",
+	"grue_warning_2": "The darkness is absolute. Something growls nearby. Something hungry.",
+	"grue_warning_3": "You are in complete darkness. The faint sound of breathing — not yours — echoes from every direction.",
+	"grue_nearby": "A low, rumbling growl reverberates through the darkness. The grue is close. Very close.",
+
 	"room_stone_barrow_first": "An ancient stone barrow rises from the earth, its weathered blocks fitted together with a precision that speaks of forgotten craftsmanship. A dark opening yawns in one side, exhaling cool air that carries the scent of ages past. This is old. Older than the house. Older, perhaps, than memory.",
 	"room_stone_barrow": "The stone barrow. The dark opening breathes its ancient breath.",
 	"room_forest_south_first": "You are in a dense part of the forest south of the house. The trees here grow close together, their branches interlocking overhead like the fingers of old friends. Paths lead in several directions through the undergrowth.",

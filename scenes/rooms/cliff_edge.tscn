@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://room_cliff_edge"]
+[gd_scene load_steps=9 format=3 uid="uid://room_cliff_edge"]
 
 [ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
@@ -17,6 +17,9 @@ size = Vector2(30, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_precipice"]
 size = Vector2(60, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sapphire_bracelet"]
+size = Vector2(20, 15)
 
 [node name="CliffEdge" type="Node2D"]
 script = ExtResource("1")
@@ -56,6 +59,18 @@ look_text = "A sheer drop into nothingness. Far below, you can hear the river. T
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Precipice"]
 shape = SubResource("RectangleShape2D_precipice")
+
+[node name="SapphireBracelet" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(450, 280)
+script = ExtResource("2")
+hotspot_id = "sapphire_bracelet"
+display_name = "Sapphire Bracelet"
+hotspot_type = 0
+item_id = "sapphire_bracelet"
+look_text = "A sapphire bracelet lies near the edge, as if dropped by someone fleeing in haste."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SapphireBracelet"]
+shape = SubResource("RectangleShape2D_sapphire_bracelet")
 
 [node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(625, 270)
