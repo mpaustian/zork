@@ -10,13 +10,24 @@ func _ready() -> void:
 	# Connect room container to the room manager
 	RoomManager.room_container = room_container
 
-	# Start the game
-	_start_new_game()
+	# Wait for title screen
+	GameManager.state = GameManager.GameState.MENU
+	var title_screen: Node = get_tree().get_first_node_in_group("title_screen")
+	if title_screen:
+		title_screen.new_game_requested.connect(_start_new_game)
+		title_screen.continue_requested.connect(_continue_game)
+	else:
+		_start_new_game()
 
 
 func _start_new_game() -> void:
 	GameManager.state = GameManager.GameState.PLAYING
 	RoomManager.go_to_room(START_ROOM)
+
+
+func _continue_game() -> void:
+	SaveManager.load_game()
+	GameManager.state = GameManager.GameState.PLAYING
 
 
 func _input(event: InputEvent) -> void:
@@ -28,6 +39,34 @@ func _input(event: InputEvent) -> void:
 
 	if GameManager.state != GameManager.GameState.PLAYING:
 		return
+
+	# Keyboard navigation
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_W, KEY_UP:
+				RoomManager.go("north")
+				get_viewport().set_input_as_handled()
+				return
+			KEY_S, KEY_DOWN:
+				RoomManager.go("south")
+				get_viewport().set_input_as_handled()
+				return
+			KEY_A, KEY_LEFT:
+				RoomManager.go("west")
+				get_viewport().set_input_as_handled()
+				return
+			KEY_D, KEY_RIGHT:
+				RoomManager.go("east")
+				get_viewport().set_input_as_handled()
+				return
+			KEY_Q:
+				RoomManager.go("up")
+				get_viewport().set_input_as_handled()
+				return
+			KEY_E:
+				RoomManager.go("down")
+				get_viewport().set_input_as_handled()
+				return
 
 	# Left-click: interact with hotspot or walk to location
 	if event.is_action_pressed("interact"):

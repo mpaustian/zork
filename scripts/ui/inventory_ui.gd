@@ -109,6 +109,9 @@ func _end_drag() -> void:
 	if _dragging_item.is_empty():
 		return
 
+	var mouse_pos := get_viewport().get_mouse_position()
+	var used := false
+
 	# Check if dropped on a hotspot in the room
 	var space := get_viewport().get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
@@ -120,12 +123,29 @@ func _end_drag() -> void:
 		var collider: Object = result["collider"]
 		if collider is Hotspot:
 			InventoryManager.use_item_on(_dragging_item, collider.hotspot_id)
+			used = true
 			break
+
+	# If dropped on the room area (not UI), drop the item on the ground
+	if not used and mouse_pos.y > 48 and mouse_pos.y < 320:
+		_drop_item(_dragging_item)
 
 	_dragging_item = ""
 	if _drag_sprite:
 		_drag_sprite.queue_free()
 		_drag_sprite = null
+
+
+func _drop_item(item_id: String) -> void:
+	if InventoryManager.drop_item(item_id):
+		var item_name: String = InventoryManager.get_item_name(item_id)
+		NarratorManager.narrate_raw("You drop the %s on the ground." % item_name)
+		# Refresh the current room to show the dropped item
+		var room_container: Node = RoomManager.room_container
+		if room_container and room_container.get_child_count() > 0:
+			var room: Node = room_container.get_child(0)
+			if room.has_method("_create_ground_item_sprite"):
+				room._create_ground_item_sprite(item_id)
 
 
 func _show_item_context(item_id: String) -> void:
