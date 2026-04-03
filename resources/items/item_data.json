@@ -136,5 +136,56 @@
 		"weight": 0,
 		"type": "interactive",
 		"takeable": false
+	},
+	"bell": {
+		"name": "Bell",
+		"description": "A tarnished brass bell. It has a clear, resonant tone.",
+		"weight": 10,
+		"type": "tool",
+		"takeable": true
+	},
+	"prayer_book": {
+		"name": "Prayer Book",
+		"description": "An ancient prayer book bound in cracked leather. The text is written in a language you cannot read, but the illustrations are unsettling.",
+		"weight": 5,
+		"type": "tool",
+		"takeable": true
+	},
+	"candles": {
+		"name": "Candles",
+		"description": "Three ivory candles, each carved with tiny symbols. They feel cold to the touch.",
+		"weight": 3,
+		"type": "tool",
+		"takeable": true
+	},
+	"gold_coffin": {
+		"name": "Gold Coffin",
+		"description": "An ornate golden coffin, surprisingly light for its size. Hieroglyphics cover every surface.",
+		"weight": 15,
+		"type": "treasure",
+		"value": 10,
+		"takeable": true
+	},
+	"crystal_skull": {
+		"name": "Crystal Skull",
+		"description": "A skull carved from pure crystal. It seems to stare at you no matter which way you hold it.",
+		"weight": 5,
+		"type": "treasure",
+		"value": 10,
+		"takeable": true
+	},
+	"coal": {
+		"name": "Lump of Coal",
+		"description": "A large, dense lump of coal. Good for machines, bad for Christmas stockings.",
+		"weight": 5,
+		"type": "misc",
+		"takeable": true
+	},
+	"stiletto": {
+		"name": "Stiletto",
+		"description": "The thief's weapon. A thin, deadly blade designed for precision rather than power.",
+		"weight": 3,
+		"type": "weapon",
+		"takeable": true
 	}
 }

@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://room_damp_cave"]
+[gd_scene load_steps=9 format=3 uid="uid://room_gas_room"]
 
-[ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/rooms/gas_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
 
@@ -12,23 +12,26 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(20, 200, 620, 200, 620,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player_col"]
 size = Vector2(12, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_n"]
+size = Vector2(200, 30)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
 size = Vector2(30, 140)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
-size = Vector2(200, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gas_seep"]
+size = Vector2(60, 30)
 
-[node name="DampCave" type="Node2D"]
+[node name="GasRoom" type="Node2D"]
 script = ExtResource("1")
-room_id = "damp_cave"
-room_name = "Damp Cave"
+room_id = "gas_room"
+room_name = "Gas Room"
 surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.22, 0.25, 0.28, 1)
+color = Color(0.13, 0.12, 0.1, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -46,6 +49,18 @@ path_desired_distance = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_player_col")
 
+[node name="ExitNorth" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(320, 175)
+script = ExtResource("2")
+hotspot_id = "exit_north"
+display_name = "North"
+hotspot_type = 1
+exit_direction = "north"
+look_text = "The passage leads north to the drafty room."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitNorth"]
+shape = SubResource("RectangleShape2D_exit_n")
+
 [node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
 position = Vector2(625, 270)
 script = ExtResource("2")
@@ -53,19 +68,18 @@ hotspot_id = "exit_east"
 display_name = "East"
 hotspot_type = 1
 exit_direction = "east"
-look_text = "A damp passage leads east."
+look_text = "A passage leads east to the machine room."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
 shape = SubResource("RectangleShape2D_exit_e")
 
-[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 345)
+[node name="GasSeep" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(300, 280)
 script = ExtResource("2")
-hotspot_id = "exit_south"
-display_name = "South"
-hotspot_type = 1
-exit_direction = "south"
-look_text = "A passage leads south into an ancient temple."
+hotspot_id = "gas_seep"
+display_name = "Gas Seep"
+hotspot_type = 4
+look_text = "A greenish haze seeps from cracks in the floor. The air here is thick and smells acrid. Using an open flame here would be... inadvisable."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
-shape = SubResource("RectangleShape2D_exit_s")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GasSeep"]
+shape = SubResource("RectangleShape2D_gas_seep")

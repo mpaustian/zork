@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://room_narrow_passage"]
+[gd_scene load_steps=9 format=3 uid="uid://room_machine_room"]
 
-[ext_resource type="Script" path="res://scripts/systems/base_room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/rooms/machine_room.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/systems/hotspot.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/systems/player.gd" id="3"]
 
@@ -15,23 +15,23 @@ size = Vector2(12, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_w"]
 size = Vector2(30, 140)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_e"]
-size = Vector2(30, 140)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coal_machine"]
+size = Vector2(80, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit_s"]
-size = Vector2(200, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coal"]
+size = Vector2(20, 20)
 
-[node name="NarrowPassage" type="Node2D"]
+[node name="MachineRoom" type="Node2D"]
 script = ExtResource("1")
-room_id = "narrow_passage"
-room_name = "NarrowPassage"
+room_id = "machine_room"
+room_name = "Machine Room"
 surface_type = "stone"
 
 [node name="Background" type="ColorRect" parent="."]
 mouse_filter = 2
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.25, 0.25, 0.3, 1)
+color = Color(0.18, 0.17, 0.16, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1")
@@ -56,31 +56,30 @@ hotspot_id = "exit_west"
 display_name = "West"
 hotspot_type = 1
 exit_direction = "west"
-look_text = "The passage continues west."
+look_text = "The passage leads west to the gas room."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitWest"]
 shape = SubResource("RectangleShape2D_exit_w")
 
-[node name="ExitEast" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(625, 270)
+[node name="CoalMachine" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(350, 240)
 script = ExtResource("2")
-hotspot_id = "exit_east"
-display_name = "East"
-hotspot_type = 1
-exit_direction = "east"
-look_text = "The passage narrows to the east."
+hotspot_id = "coal_machine"
+display_name = "Coal Machine"
+hotspot_type = 3
+look_text = "A massive, ancient machine dominates the room. It has an input hopper for coal, various dials and levers, and an output chute. A label reads: 'FROBOZZ MAGIC COAL COMPANY — AUTOMATIC TORCH MAKER'."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitEast"]
-shape = SubResource("RectangleShape2D_exit_e")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoalMachine"]
+shape = SubResource("RectangleShape2D_coal_machine")
 
-[node name="ExitSouth" type="Area2D" parent="." groups=["hotspots"]]
-position = Vector2(320, 345)
+[node name="Coal" type="Area2D" parent="." groups=["hotspots"]]
+position = Vector2(200, 300)
 script = ExtResource("2")
-hotspot_id = "exit_south"
-display_name = "South"
-hotspot_type = 1
-exit_direction = "south"
-look_text = "A dark passage leads south into the coal mine."
+hotspot_id = "coal"
+display_name = "Lump of Coal"
+hotspot_type = 0
+item_id = "coal"
+look_text = "A large, dense lump of coal. Good for machines, bad for Christmas stockings."
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitSouth"]
-shape = SubResource("RectangleShape2D_exit_s")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coal"]
+shape = SubResource("RectangleShape2D_coal")

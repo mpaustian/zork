@@ -258,7 +258,8 @@
 		"ambient_sound": "underground_drip",
 		"exits": {
 			"west": "round_room",
-			"east": "deep_canyon"
+			"east": "deep_canyon",
+			"south": "coal_mine_entrance"
 		}
 	},
 	"loud_room": {
@@ -289,7 +290,8 @@
 		"surface": "stone",
 		"ambient_sound": "underground_drip",
 		"exits": {
-			"east": "loud_room"
+			"east": "loud_room",
+			"south": "temple"
 		}
 	},
 	"strange_passage": {
@@ -347,6 +349,107 @@
 		"ambient_sound": "river_rush",
 		"exits": {
 			"south": "dam"
+		}
+	},
+	"temple": {
+		"name": "Temple",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "damp_cave",
+			"east": "egyptian_room",
+			"south": "altar"
+		}
+	},
+	"egyptian_room": {
+		"name": "Egyptian Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"west": "temple"
+		}
+	},
+	"altar": {
+		"name": "Altar",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "temple",
+			"down": {
+				"target": "hades_entrance",
+				"requires_flag": "spirits_banished",
+				"blocked_message": "An unearthly wailing rises from below. The spirits of the dead guard this passage. You cannot descend while they remain."
+			}
+		}
+	},
+	"hades_entrance": {
+		"name": "Entrance to Hades",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"up": "altar",
+			"south": "land_of_dead"
+		}
+	},
+	"land_of_dead": {
+		"name": "Land of the Dead",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "hades_entrance"
+		}
+	},
+	"coal_mine_entrance": {
+		"name": "Coal Mine Entrance",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "narrow_passage",
+			"down": "shaft_room"
+		}
+	},
+	"shaft_room": {
+		"name": "Shaft Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"up": "coal_mine_entrance",
+			"south": "timber_room"
+		}
+	},
+	"timber_room": {
+		"name": "Timber Room",
+		"dark": true,
+		"surface": "wood",
+		"exits": {
+			"north": "shaft_room",
+			"east": "drafty_room"
+		}
+	},
+	"drafty_room": {
+		"name": "Drafty Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"west": "timber_room",
+			"south": "gas_room"
+		}
+	},
+	"gas_room": {
+		"name": "Gas Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"north": "drafty_room",
+			"east": "machine_room"
+		}
+	},
+	"machine_room": {
+		"name": "Machine Room",
+		"dark": true,
+		"surface": "stone",
+		"exits": {
+			"west": "gas_room"
 		}
 	}
 }
