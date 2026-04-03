@@ -14,6 +14,9 @@ func _ready() -> void:
 	# Gather all hotspots in this room
 	_hotspots = _find_hotspots(self)
 
+	# Remove item hotspots for items already taken
+	_remove_taken_items()
+
 	# Connect hotspot signals
 	for hotspot in _hotspots:
 		hotspot.hotspot_clicked.connect(_on_hotspot_clicked)
@@ -105,6 +108,34 @@ func _show_verb_coin(hotspot: Hotspot) -> void:
 ## Override this in room scripts to handle item-on-object interactions
 func on_use_item(item_id: String, target_id: String) -> void:
 	NarratorManager.narrate_use_fail(item_id, target_id)
+
+
+func _remove_taken_items() -> void:
+	# Remove scene-placed item hotspots if the item is already in inventory,
+	# placed in the trophy case, or dropped on the ground elsewhere
+	var to_remove: Array[Hotspot] = []
+	for hotspot in _hotspots:
+		if hotspot.hotspot_type != Hotspot.HotspotType.ITEM:
+			continue
+		if hotspot.item_id.is_empty():
+			continue
+		if InventoryManager.has_item(hotspot.item_id):
+			to_remove.append(hotspot)
+		elif hotspot.item_id in GameManager.treasures_placed:
+			to_remove.append(hotspot)
+		elif _is_item_on_ground_elsewhere(hotspot.item_id):
+			to_remove.append(hotspot)
+	for hotspot in to_remove:
+		_hotspots.erase(hotspot)
+		hotspot.queue_free()
+
+
+func _is_item_on_ground_elsewhere(item_id: String) -> bool:
+	for groom_id in InventoryManager.ground_items:
+		var items: Array = InventoryManager.ground_items[groom_id]
+		if item_id in items:
+			return true
+	return false
 
 
 func _spawn_ground_items() -> void:
