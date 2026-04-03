@@ -168,6 +168,8 @@ func _create_ground_item_sprite(item_id: String) -> void:
 	hotspot.hotspot_clicked.connect(_on_hotspot_clicked)
 
 
+const _RoomRenderer := preload("res://scripts/systems/room_renderer.gd")
+
 func _apply_tiled_background() -> void:
 	# Hide the old ColorRect background
 	var bg: ColorRect = get_node_or_null("Background")
@@ -175,7 +177,7 @@ func _apply_tiled_background() -> void:
 		bg.visible = false
 
 	# Create tiled background using RoomRenderer
-	var tiled_bg: Node2D = RoomRenderer.create_room_background(room_id)
+	var tiled_bg: Node2D = _RoomRenderer.create_room_background(room_id)
 	add_child(tiled_bg)
 	# Move it to the back
 	move_child(tiled_bg, 0)
