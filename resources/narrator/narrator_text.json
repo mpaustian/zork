@@ -278,5 +278,9 @@
 	"room_overgrown_path_first": "An overgrown path winds through dense thorny bushes. Nature has been working to reclaim this trail for decades, and it's winning. The path is passable, but just barely.",
 	"room_overgrown_path": "The overgrown path. The thorns haven't gotten friendlier.",
 	"room_hilltop_first": "You stand on a hilltop overlooking the surrounding countryside. The view is magnificent — the white house below, the dark forest stretching to the horizon, and somewhere beneath it all, the vast underground empire. Wind tugs at your clothes.",
-	"room_hilltop": "The hilltop. The wind carries the faint sound of adventure."
+	"room_hilltop": "The hilltop. The wind carries the faint sound of adventure.",
+
+	"death_sarcophagus": "The stone lid crashes down with terrible finality. You find yourself in very cramped, very dark, very permanent accommodations. On the bright side, the rent is extremely reasonable.",
+	"death_river_falls": "The raft tips over the edge of Aragain Falls. For one magnificent moment you are flying. Then you are not.",
+	"death_cliff_fall": "You tumble over the cliff edge, arms windmilling uselessly. The narrator times your descent at approximately four seconds. The landing takes rather less time."
 }
