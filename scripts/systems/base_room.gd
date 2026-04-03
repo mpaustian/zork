@@ -11,6 +11,9 @@ var _first_visit: bool = true
 
 
 func _ready() -> void:
+	# Replace solid color background with tiled art
+	_apply_tiled_background()
+
 	# Gather all hotspots in this room
 	_hotspots = _find_hotspots(self)
 
@@ -163,6 +166,19 @@ func _create_ground_item_sprite(item_id: String) -> void:
 	add_child(hotspot)
 	_hotspots.append(hotspot)
 	hotspot.hotspot_clicked.connect(_on_hotspot_clicked)
+
+
+func _apply_tiled_background() -> void:
+	# Hide the old ColorRect background
+	var bg: ColorRect = get_node_or_null("Background")
+	if bg:
+		bg.visible = false
+
+	# Create tiled background using RoomRenderer
+	var tiled_bg: Node2D = RoomRenderer.create_room_background(room_id)
+	add_child(tiled_bg)
+	# Move it to the back
+	move_child(tiled_bg, 0)
 
 
 func _find_hotspots(node: Node) -> Array[Hotspot]:
