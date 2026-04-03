@@ -3,8 +3,8 @@ class_name DarknessOverlay
 ## Visual overlay that darkens the screen based on light level. Grue eyes appear in darkness.
 
 @onready var overlay: ColorRect = $Overlay
-@onready var light_circle: Sprite2D = $LightCircle
-@onready var grue_eyes: AnimatedSprite2D = $GrueEyes
+var light_circle: Sprite2D = null
+var grue_eyes: AnimatedSprite2D = null
 
 var _target_darkness: float = 0.0
 var _current_darkness: float = 0.0

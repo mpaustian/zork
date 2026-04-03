@@ -98,6 +98,16 @@ func _on_quit() -> void:
 
 func _close() -> void:
 	_is_active = false
-	var tween := create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 0.5)
-	tween.tween_callback(func(): visible = false)
+	# Fade out the background and panel
+	var bg: ColorRect = get_node_or_null("Background")
+	var panel: PanelContainer = get_node_or_null("Panel")
+	if bg:
+		var tween := create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(bg, "modulate:a", 0.0, 0.5)
+		if panel:
+			tween.tween_property(panel, "modulate:a", 0.0, 0.5)
+		tween.set_parallel(false)
+		tween.tween_callback(func(): visible = false)
+	else:
+		visible = false

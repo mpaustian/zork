@@ -3,7 +3,6 @@ class_name Player
 ## The adventurer. Click-to-move pathfinding, placeholder colored sprite.
 
 signal arrived_at(position: Vector2)
-signal clicked_hotspot(hotspot: Node2D)
 
 const MOVE_SPEED := 80.0  # Pixels per second
 const PLAYER_COLOR := Color(0.2, 0.5, 0.9)

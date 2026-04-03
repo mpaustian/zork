@@ -10,7 +10,7 @@ const REWIND_DURATION := 1.5
 @onready var background: ColorRect = $Background
 @onready var death_text: RichTextLabel = $DeathText
 @onready var rewind_overlay: ColorRect = $RewindOverlay
-@onready var rewind_lines: Control = $RewindLines
+var rewind_lines: Control = null
 
 var _death_type: String = ""
 

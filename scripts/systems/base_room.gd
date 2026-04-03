@@ -83,7 +83,7 @@ func _handle_walk(hotspot: Hotspot) -> void:
 		RoomManager.go(hotspot.exit_direction)
 
 
-func _handle_talk(hotspot: Hotspot) -> void:
+func _handle_talk(_hotspot: Hotspot) -> void:
 	NarratorManager.narrate_raw("There's no response.")
 
 
