@@ -3,7 +3,8 @@ class_name NarratorDisplay
 ## The narrator text box. Top of screen, parchment style, typewriter effect.
 
 const TYPEWRITER_SPEED := 0.03  # Seconds per character
-const DISPLAY_DURATION := 4.0  # How long text stays after finishing
+const MIN_DISPLAY_DURATION := 3.0  # Minimum time text stays
+const CHARS_PER_SECOND := 12.0  # Reading speed for calculating display time
 const FADE_DURATION := 0.3
 
 @onready var text_label: RichTextLabel = $MarginContainer/TextLabel
@@ -41,7 +42,8 @@ func _process(delta: float) -> void:
 		_char_index += 1
 		if _char_index >= _full_text.length():
 			_typing = false
-			_display_timer = DISPLAY_DURATION
+			# Scale display time with text length so long messages stay longer
+			_display_timer = maxf(MIN_DISPLAY_DURATION, _full_text.length() / CHARS_PER_SECOND)
 			NarratorManager.finish_narration()
 		else:
 			text_label.text = _full_text.substr(0, _char_index)
@@ -85,5 +87,5 @@ func _input(event: InputEvent) -> void:
 		_char_index = _full_text.length()
 		text_label.text = _full_text
 		_typing = false
-		_display_timer = DISPLAY_DURATION
+		_display_timer = maxf(MIN_DISPLAY_DURATION, _full_text.length() / CHARS_PER_SECOND)
 		NarratorManager.finish_narration()
