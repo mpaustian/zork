@@ -25,3 +25,9 @@ Thumbs.db
 
 # Claude Code
 .claude/
+
+# zork3d (web build)
+zork3d/node_modules/
+zork3d/test-results/
+zork3d/playwright-report/
+zork3d/e2e/screens/

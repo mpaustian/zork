@@ -1,9 +1,18 @@
 # Zork: The Great Underground Empire — Graphical Adventure
 
 ## Project Overview
-A darkly comedic point-and-click graphical adventure adapting Zork I, built in Godot 4.x (currently 4.6.2) with modern pixel art. Free and open source.
+A darkly comedic adventure adapting Zork I. Free and open source.
 
 **Repo:** https://github.com/mpaustian/zork
+
+Two implementations live here:
+- **`zork3d/` — the active project**: a full 3D web remake (Three.js + Vite, toon-shaded
+  cartoon dioramas). Runs in any browser; `zork3d/dist/index.html` is a self-contained
+  playable build. Tests: `npm test` (vitest unit) and `npm run e2e` (Playwright +
+  system Chrome, fully runnable on this Linux box). See `zork3d/README.md`.
+- **Godot 4.6.2 2D point-and-click** (repo root): the original Phase 1 vertical slice,
+  kept as reference. NOTE: Godot is NOT installed on this Linux machine — the user
+  runs Godot only on a separate Windows machine.
 
 ## Key Design Decisions
 - **Interaction:** Point-and-click with verb coin radial menu (right-click hotspots)

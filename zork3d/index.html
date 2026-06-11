@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZORK — The Great Underground Empire (3D)</title>
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; background: #0d0a14; height: 100%; }
+    #game-canvas { display: block; width: 100vw; height: 100vh; }
+    #fade {
+      position: fixed; inset: 0; background: #0d0a14; opacity: 0;
+      pointer-events: none; transition: opacity 0.22s ease; z-index: 25;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+  <div id="fade"></div>
+  <div id="hud-root"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
