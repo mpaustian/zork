@@ -35,6 +35,10 @@ class Game {
     this.pendingMoveDir = null;
     this.started = false;
     this.idleTimer = null;
+    this.instantActions = false; // e2e hook: skip the walk-to-act animation
+
+    // The browser context menu has no business in the Great Underground Empire.
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
 
     const canvas = document.getElementById('game-canvas');
     this.scene = new SceneManager(canvas, {
@@ -101,9 +105,11 @@ class Game {
     if (this.engine.state.mode !== 'play') return;
     const armed = this.hud.armedItem;
     if (armed) {
-      this.engine.useItemOn(armed, objectId);
       this.hud.disarm();
-      this.afterAction();
+      this._approachThen(objectId, () => {
+        this.engine.useItemOn(armed, objectId);
+        this.afterAction();
+      });
       return;
     }
     const name = SCENERY[objectId]?.name ?? ITEMS[objectId]?.name ?? objectId;
@@ -111,14 +117,26 @@ class Game {
     this.hud.openVerbCoin(x, y, { objectId, name, verbs });
   }
 
+  // Walk the avatar over to the object before acting on it (looking is free —
+  // you have eyes). Distant interactions teleporting results feels wrong.
+  _approachThen(objectId, fn) {
+    const d = this.scene.distanceToObject(objectId);
+    if (this.instantActions || d == null || d <= 2.4) { fn(); return; }
+    this.scene.approachObject(objectId, fn);
+  }
+
   doVerb(verb, objectId) {
     const e = this.engine;
-    if (verb === 'look') e.lookAt(objectId);
-    else if (verb === 'take') e.take(objectId);
-    else if (verb === 'use') e.useObject(objectId);
-    else if (verb === 'talk') e.talkTo(objectId);
-    else if (verb === 'attack') e.attack(objectId);
-    this.afterAction();
+    const run = () => {
+      if (verb === 'look') e.lookAt(objectId);
+      else if (verb === 'take') e.take(objectId);
+      else if (verb === 'use') e.useObject(objectId);
+      else if (verb === 'talk') e.talkTo(objectId);
+      else if (verb === 'attack') e.attack(objectId);
+      this.afterAction();
+    };
+    if (verb === 'look') { run(); return; }
+    this._approachThen(objectId, run);
   }
 
   useItemOnSelf(itemId) {

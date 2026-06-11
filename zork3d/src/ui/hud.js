@@ -525,8 +525,19 @@ export class HUD {
       this._transcriptEl.removeChild(this._transcriptEl.firstChild);
     }
     this._updateMoreIndicator();
-    if (!this._narTyping && !this._narFull) {
-      this._dequeueNarrate();
+    if (!this._narTyping) {
+      if (this._narFull) {
+        // A finished message is on screen — let it linger briefly, then
+        // auto-advance. (Never leave new text stuck behind the ▼.)
+        if (!this._narTimer) {
+          this._narTimer = setTimeout(() => {
+            this._narTimer = null;
+            if (!this._narTyping) this._dequeueNarrate();
+          }, 800);
+        }
+      } else {
+        this._dequeueNarrate();
+      }
     }
   }
 
@@ -560,6 +571,7 @@ export class HUD {
       if (target >= text.length) {
         this._narTyping = false;
         this._narFull   = true;
+        this._narTimer  = null; // clear the stale tick id so narrate() can re-arm
         // Auto-advance queue after brief pause if more items waiting
         if (this._narQueue.length > 0) {
           this._narTimer = setTimeout(() => this._dequeueNarrate(), 900);

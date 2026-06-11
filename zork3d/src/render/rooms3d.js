@@ -8,6 +8,12 @@ import * as P from './props.js';
 import { tmesh, toon, rng } from './toon.js';
 
 // ─── Helper: position an object and optionally rotate it ───────────────────
+// Mark a whole prop (and its children) as a clickable hotspot.
+function tag(obj, objectId) {
+  obj.traverse((o) => { o.userData.objectId = objectId; });
+  return obj;
+}
+
 function at(obj, x, y, z, ry = 0) {
   obj.position.set(x, y, z);
   if (ry) obj.rotation.y = ry;
@@ -235,7 +241,7 @@ export const LAYOUTS = {
       g.add(P.islandBase(rx + 1, rz + 1, 0x5aaa48));
 
       // The great tree prominently on the north side
-      const gt = P.greatTree(!view.flags.egg_taken);
+      const gt = tag(P.greatTree(!view.flags.egg_taken), 'great_tree');
       gt.position.set(2.5, 0, -2);
       g.add(gt);
 
@@ -268,7 +274,7 @@ export const LAYOUTS = {
       g.add(P.interiorWalls(w, d, 0xd9cfb8, { west: true, east: true, up: false, down: false }));
 
       // Table at center-north
-      const tbl = P.table(1.8, 1.0, 0x9a7148);
+      const tbl = tag(P.table(1.8, 1.0, 0x9a7148), 'kitchen_table');
       tbl.position.set(0, 0, -3);
       g.add(tbl);
 
@@ -370,7 +376,7 @@ export const LAYOUTS = {
       }
 
       // Dusty table
-      const tbl = P.table(1.4, 0.9, 0x7a6040);
+      const tbl = tag(P.table(1.4, 0.9, 0x7a6040), 'attic_table');
       tbl.position.set(0, 0, -1);
       g.add(tbl);
 

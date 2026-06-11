@@ -87,16 +87,56 @@ export class SceneManager {
     canvas.addEventListener('pointermove', (e) => {
       this._pointer.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
     });
+    // Right-click is a game input, never the browser's save-image menu.
+    canvas.addEventListener('contextmenu', (e) => e.preventDefault());
     canvas.addEventListener('pointerdown', (e) => {
       if (this.inputLocked) return;
+      if (e.button !== 0 && e.button !== 2) return;
       this._pointer.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
       const hit = this._pick();
       if (hit?.objectId) {
+        this._approach = null;
         this.callbacks.onObjectClicked?.(hit.objectId, hit.kind, e.clientX, e.clientY, hit.point);
-      } else if (hit?.floorPoint) {
+      } else if (e.button === 0 && hit?.floorPoint) {
+        this._approach = null; // a manual move cancels any pending walk-to-act
         this.walkTarget = hit.floorPoint.clone();
       }
     });
+  }
+
+  // ---- walk-to-act ----
+  objectWorldPos(objectId) {
+    let found = null;
+    this.roomGroup?.traverse((o) => { if (!found && o.userData.objectId === objectId) found = o; });
+    if (!found) return null;
+    const p = new THREE.Vector3();
+    found.getWorldPosition(p);
+    p.y = 0;
+    return p;
+  }
+
+  distanceToObject(objectId) {
+    const p = this.objectWorldPos(objectId);
+    if (!p) return null;
+    const a = this.avatar.group.position;
+    return Math.hypot(a.x - p.x, a.z - p.z);
+  }
+
+  // Walk the avatar up to the object, then run fn. Portals don't trigger
+  // during the approach, so acting on something near an exit is safe.
+  approachObject(objectId, fn) {
+    const p = this.objectWorldPos(objectId);
+    if (!p) { fn(); return; }
+    const a = this.avatar.group.position;
+    const dir = new THREE.Vector3(p.x - a.x, 0, p.z - a.z);
+    if (dir.length() < 0.01) { fn(); return; }
+    dir.normalize();
+    const target = new THREE.Vector3(p.x - dir.x * 1.5, 0, p.z - dir.z * 1.5);
+    const [rx, rz] = this.roomSize;
+    target.x = THREE.MathUtils.clamp(target.x, -rx + 0.5, rx - 0.5);
+    target.z = THREE.MathUtils.clamp(target.z, -rz + 0.5, rz - 0.5);
+    this.walkTarget = target;
+    this._approach = { x: p.x, z: p.z, r: 2.3, fn, deadline: performance.now() + 5000 };
   }
 
   _pick() {
@@ -310,6 +350,7 @@ export class SceneManager {
     let moving = false;
     if (dirV.lengthSq() > 0) {
       this.walkTarget = null;
+      this._approach = null; // manual movement cancels a pending walk-to-act
       dirV.normalize().multiplyScalar(3.4 * dt);
       pos.add(dirV);
       this.avatar.group.rotation.y = lerpAngle(this.avatar.group.rotation.y, Math.atan2(dirV.x, dirV.z), 0.25);
@@ -333,6 +374,17 @@ export class SceneManager {
     this.moving = moving;
     this.avatar.update(dt, moving);
 
+    // Resolve a pending walk-to-act once we're close (or stalled, or timed out).
+    if (this._approach) {
+      const ap = this._approach;
+      const d = Math.hypot(pos.x - ap.x, pos.z - ap.z);
+      if (d <= ap.r || (!this.walkTarget && !moving) || performance.now() > ap.deadline) {
+        this._approach = null;
+        this.walkTarget = null;
+        ap.fn();
+      }
+    }
+
     // Portal proximity — portals only trigger for a player in motion.
     let nearAny = null;
     for (const [dir, p] of this.portals) {
@@ -340,7 +392,7 @@ export class SceneManager {
       if (d > PORTAL_RESET) this.portalCooldown.delete(dir);
       else if (d < PORTAL_TRIGGER && !this.portalCooldown.has(dir)) nearAny = dir;
     }
-    if (moving && nearAny) {
+    if (moving && nearAny && !this._approach) {
       this.portalCooldown.add(nearAny);
       this.walkTarget = null;
       this.callbacks.onPortalEnter?.(nearAny);

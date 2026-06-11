@@ -10,6 +10,7 @@ async function boot(page) {
   await expect(page.locator('.hud')).toBeAttached();
   await page.getByRole('button', { name: /new game/i }).click();
   await page.waitForFunction(() => window.__game?.started === true);
+  await page.evaluate(() => { window.__game.instantActions = true; }); // skip walk-to-act animations
   await page.waitForTimeout(600); // let the first frame + narration land
 }
 
@@ -182,6 +183,35 @@ test('FULL PLAYTHROUGH: five treasures, win screen', async ({ page }) => {
   expect(s.score).toBe(250);
   await expect(page.getByText(/legend, behind glass/i)).toBeVisible({ timeout: 15000 });
   await expect(page.locator('.hud-win__rank')).toHaveText(/greatest underground adventurer/i);
+});
+
+test('narrator auto-advances queued text without clicks', async ({ page }) => {
+  await boot(page);
+  await page.waitForFunction(() => !window.__game.hud._narTyping, null, { timeout: 15000 });
+  await act(page, () => window.__game.doVerb('look', 'mailbox'));
+  // The new line must reach the visible panel on its own — no clicking.
+  await expect(page.locator('.hud-narrator__text')).toContainText(/flag raised/i, { timeout: 10000 });
+});
+
+test('browser context menu is suppressed (right-click is a game input)', async ({ page }) => {
+  await boot(page);
+  const prevented = await page.evaluate(() => {
+    const ev = new MouseEvent('contextmenu', { bubbles: true, cancelable: true });
+    document.getElementById('game-canvas').dispatchEvent(ev);
+    return ev.defaultPrevented;
+  });
+  expect(prevented).toBe(true);
+});
+
+test('avatar walks to a distant object before acting on it', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => { window.__game.instantActions = false; });
+  await act(page, () => window.__game.portalEntered('west')); // forest
+  await page.waitForTimeout(600); // room rebuild after fade
+  await act(page, () => window.__game.doVerb('use', 'great_tree')); // tree is far away
+  // The climb (and fatal fall) must NOT happen instantly — the avatar is still walking.
+  expect((await state(page)).mode).toBe('play');
+  await page.waitForFunction(() => window.__game.engine.state.mode === 'dead', null, { timeout: 8000 });
 });
 
 test('screenshot tour of every room (visual artifacts)', async ({ page }) => {
