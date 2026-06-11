@@ -31,3 +31,8 @@ zork3d/node_modules/
 zork3d/test-results/
 zork3d/playwright-report/
 zork3d/e2e/screens/
+
+# Stray tool output at repo root
+node_modules/
+test-results/
+playwright-report/
