@@ -3,7 +3,7 @@
 ## Project Overview
 A darkly comedic adventure adapting Zork I. Free and open source.
 
-**Repo:** https://github.com/mpaustian/zork
+**Repo:** `git@forgejo:mpaustian/zork.git` (primary, on Forgejo), mirrored to https://github.com/mpaustian/zork
 
 Two implementations live here:
 - **`zork3d/` — the active project**: a full 3D web remake (Three.js + Vite, toon-shaded
@@ -83,5 +83,5 @@ Full PRD is at `docs/PRD.md`. Key sections: Game Identity, Art Direction, Gamepl
 ## Development Workflow
 - User tests on a Windows machine running Godot 4.6.2 (installed at G:\godot)
 - Development happens on WSL Ubuntu 24.04
-- Always commit and push changes to GitHub so they can pull and test
+- Always commit and push changes to `origin` (Forgejo). They reach the GitHub mirror, where the user can pull and test.
 - This is a fun side project / tech demo — keep it enjoyable
